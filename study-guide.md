@@ -38,8 +38,8 @@ selectors. You should be able to use descendant (a.k.a. "space")
 selectors and the `:hover` selector. Given an HTML page you should be
 able to write selectors for various elements on that page.
 
-**Properties**: You should know the following CSS properties and what
-valid values for each property look like:
+**Properties**: You should know the following CSS properties and how
+to write values for them:
 
 - `font-family`, `font-weight`, `font-style`, `font-size`, and
   `text-decoration`
