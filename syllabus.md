@@ -65,6 +65,31 @@ Oct, and 13 Nov. All take place in the normal classroom. Instructors
 may curve quizzes and exams up (but not down) to reach a target class
 average.
 
+# Schedule
+
+The following is an aspirational course schedule. It may change as the
+course progresses; the instructor will announce changes in class.
+
+| Week starting | Topic                  | Assessments        |
+|---------------|------------------------|--------------------|
+| August 18     | HTML                   |                    |
+| August 25     | CSS                    | Quiz 1, Homework 1 |
+| September 1   | Layout                 |                    |
+| September 8   | Flex-box               | Quiz 2, Homework 2 |
+| September 15  | Django                 |                    |
+| September 22  | Back-ends              | Homework 3         |
+| September 29  | Review and **Midterm** | Midterm            |
+| October 6     | *Fall break*           |                    |
+| October 13    | Forms                  | Quiz 3             |
+| October 20    | Auth                   | Homework 4         |
+| October 27    | Security               | Quiz 4             |
+| November 3    | JavaScript             | Homework 5         |
+| November 10   | AJAX                   | Quiz 5             |
+| November 17   | Cloud                  | Homework 6         |
+| November 24   | Scaling                |                    |
+| December 1    | Review                 | Homework 7         |
+| December 8    | **Final**              | Final              |
+
 # Attendance
 
 This is an in-person class. Your attendance is assumed. Classes will
@@ -128,30 +153,6 @@ ask larger conceptual questions.
 Do not wait to get help. It's much easier to not fall behind than it
 is to catch up!
 
-# Schedule
-
-The following is an aspirational course schedule. It may change as the
-course progresses; the instructor will announce changes in class.
-
-| Week starting | Topic                  | Assessments        |
-|---------------|------------------------|--------------------|
-| August 18     | HTML                   |                    |
-| August 25     | CSS                    | Quiz 1, Homework 1 |
-| September 1   | Layout                 |                    |
-| September 8   | Flex-box               | Quiz 2, Homework 2 |
-| September 15  | Django                 |                    |
-| September 22  | Back-ends              | Homework 3         |
-| September 29  | Review and **Midterm** | Midterm            |
-| October 6     | *Fall break*           |                    |
-| October 13    | Forms                  | Quiz 3             |
-| October 20    | Auth                   | Homework 4         |
-| October 27    | Security               | Quiz 4             |
-| November 3    | JavaScript             | Homework 5         |
-| November 10   | AJAX                   | Quiz 5             |
-| November 17   | Cloud                  | Homework 6         |
-| November 24   | Scaling                |                    |
-| December 1    | Review                 | Homework 7         |
-| December 8    | **Final**              | Final              |
 
 # Policies
 
@@ -177,10 +178,11 @@ whole number.
 notice by the instructor.
 
 Please also familiarize yourself with [University policies][u-policy]
-on the ADA, safety, sexual misconduct, Covid, undocumented students,
+on the ADA, safety, sexual misconduct, undocumented students,
 drop/withdrawal, student mental health, student support, and academic
 misconduct, as well as the [Kahlert School of Computing's academic
-policies][ksoc-policy] and the [College of Engineering policies][coe-policy].
+policies][ksoc-policy] and the [College of Engineering
+policies][coe-policy].
 
 [u-policy]: https://cte.utah.edu/instructor-education/syllabus/institutional-policies.php
 [ksoc-policy]: https://handbook.cs.utah.edu/current/Academics/policies.php
