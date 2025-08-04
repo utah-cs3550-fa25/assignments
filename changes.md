@@ -13,6 +13,10 @@ have it in this repository.
   my "bonus" lectures, to make sure students come to those, and they
   come a bit before the assignments on the same topics, to force some
   basic understanding and help students complete the homework on time.
+- I've balanced the grading away from homework toward quizzes and
+  exams. This is basically entirely because of LLMs, I assume students
+  can easily cheat on the homework, so grades have to come from
+  in-class work.
 - I've de-emphasized writing HTML, on the grounds that LLMs find this
   really easy. The study guide instead emphasizes reading and
   debugging HTML. The first assignment loses some of the HTML writing
