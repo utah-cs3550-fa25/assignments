@@ -5,8 +5,8 @@ This document lists vocabulary, concepts, and syntax that you're
 expected to know for the midterm and final. You should use this
 document to study outside of class.
 
-HTML
-----
+HTML and CSS
+------------
 
 **Basic HTML**: You should be able read HTML and associate HTML code
 with the parts of the web page it renders. You should be able to
@@ -33,91 +33,104 @@ You should know the `lang` and `alt` attributes and the `<label>`
 element. You should know the landmark elements: `<main>`, `<nav>`,
 `<header>`, and `<footer>`.
 
-CSS
----
+**Selectors**: You should be able to use type, class, and ID
+selectors. You should be able to use descendant (a.k.a. "space")
+selectors and the `:hover` selector. Given an HTML page you should be
+able to write selectors for various elements on that page.
 
-**Basic CSS**: You should be able to write CSS code that uses tag, ID,
-and class selectors, plus the `:hover` pseudo-class, and compound
-selectors using the space combination type. You should be able to
-write selectors to select various elements on an HTML page.
-
-You should know the following CSS properties:
+**Properties**: You should know the following CSS properties and what
+valid values for each property look like:
 
 - `font-family`, `font-weight`, `font-style`, `font-size`, and
   `text-decoration`
-- `color`, `background-color`, and `opacity`
-- `border` (the three-value form) and its subproperties like
-  `border-bottom` or `border-left-width`
-- `border-radius` (the one-value form)
+- `text-align`
+- `color`, and `background-color`
+- `border` and `border-bottom`, specifically the three-valued form
+- `border-radius`
+- `display` specifically when set to `none`
 
 You should be able to explain the cascading rule, inheritance, and
-shorthand properties.
+shorthand properties. For colors, you should be able to write named
+and hex colors. For fonts, you should know the named `serif`,
+`sans-serif`, and `monospace` fonts.
 
-**Legacy layout**: You should be able to identify where the padding,
-margin, and border areas of a box are. You should be able to define
-inline and block layout mode. You should be able to write a
-`max-width` or `min-width` media query.
+Layout
+------
 
-You should be able to use the following types of values:
+**Flex-box**: You should know how to create a row or column using
+`display: flex` and the `flex-direction` property, and be able to
+identify flex containers and flex items. You should be able to use
+`width` and `height` to change the size of flex items, use `gap` to
+add gaps between them, and use `padding` between the flex container
+and flex items. You should be able to use `px` and `rem` units.
 
-- For lengths, the `px`, `rem`, `vw`, and `vh` units
-- For colors, hex colors or named colors
-- For `line-height`, numeric multipliers
-- The CSS named fonts `serif`, `sans-serif`, `monospace`
+You should understand the main and cross axes of a flex container. You
+should be able to distribute white-space with the `justify-content`
+and `align-items` properties, know which is which, and the common
+values for each.
 
-**Flex-box**: You should be able to create complex layouts using
-flex-box layout, including nested layouts with rows and columns. This
-involves knowing how to use the the `display: flex` and
-`flex-direction` properties, the `width`/`height`, `flex-grow`, and
-`flex-shrink` properties, and the `justify-content`, `gap`, and
-`align-items` properties.
+You should be able to explain default layout properties and what a CSS
+reset does. (You don't need to memorize the reset syntax itself.)
 
-Knowing the properties and their values is not enough! You should be
-able to design complex layouts using flex-box, starting from
-screenshots or wireframes. The [Notes](notes.md#flex-box) have a short
-checklist you can follow to build complex flex-box layouts. You should
-feel comfortable using this checklist to create layouts from
-screenshots or wireframes. It is important to practice this.
+**Nested flex-box**: You should be able to design complex layouts by
+nesting multiple flex rows and columns, starting from screenshots or
+wire-frames. We recommend the following set of steps:
+
+- Draw a wireframe that marks each element and identifies rows and
+  columns. You may need to modify the wireframe as you go, if you
+  determine that you need extra wrapper elements.
+- Then, start at the outer-most flex container and work inward.
+- First determine the main axis lengths of each flex item. Is it sized
+  to content or is it a specific size?
+- Then determine how main axis whitespace is distributed. Is there a
+  minimum gap? Is there padding? Where does extra whitespace go?
+- Finally determine how cross axis whitespace is distributed. Do
+  elements stretch?
+
+Practice creating complex layouts using this check-list; this is often
+the most difficult skill for students.
+
+**Responsive layout**: You should be able to write `@media` rules
+using `max-width` or `min-width` predicates. You should be able to
+write responsive layouts that change from row to column or hide
+elements at various screen sizes.
 
 Django and MVC
 --------------
 
 You should be able to define clients, servers, the client-server
-architecture, requests, and responses.
+architecture, requests, and responses. You should be able to define
+the roles of the back-end and the front-end.
 
-You should be able to explain the roles of the model, view, and
-controller, and router in a MVC-style web application. You should be
-able to explain the roles of standard Django project files like
+You should be able to explain the roles of the model, view,
+controller, and router in a MVC-style web application. You should also
+know the Django names for each, which, annoyingly, differ. You should
+be able to explain the roles of standard Django project files like
 `settings.py`, `urls.py`, `models.py`, `views.py`, the `migrations/`
 folder, the `static/` folder, and the `templates/` folder.
 
-**Models**: You should know the following Django field types:
+**Models**: You should know basic Django field types like
+`IntegerField`, `FloatField`, `TextField`, and `FileField`. You should
+be able to determine whether `CharField` or `TextField` is more
+appropriate. You should be able to use the `max_length`, `blank`,
+`null`, and `default` attributes.
 
-- `IntegerField`, `FloatField`, and `DecimalField`
-- `CharField` and `TextField`
-- `DateField` and `DateTimeField`
-- `FileField` and `ImageField`
+You should understand what a `ForeignKey` is. You should be able to
+model complex relationships using it. You should be able to choose
+appropriate `on_delete` behaviors.
 
-You should be able to identify which field is appropriate in various
-situations, and also be able to use the `max_length`, `blank`, `null`,
-and `default` attributes.
+You should be able to explain migrations, when they are created, when
+they are run, and what problem they solve.
 
-You should be able to model complex relationships in web application
-state using `ForeignKey` relationships, including choosing `on_delete`
-behavior.
+**Views**: You should know how to use the `render` function to pass
+data from controllers to views. You should know the `for`, `if`,
+`with`, and `include` Django template tags and the `forloop.first`,
+`forloop.last`, `forloop.counter`, and `forloop.counter0` variables.
+You should be able to use basic template filters like `default`,
+`floatformat`, `date`, `length`.
 
-**Views**: You should know how to use the `render` function in
-controllers.
-
-You should know the following Django template filters:
-
-- `default`
-- `floatformat`, `date`, `timesince`
-- `join`, `length`, `pluralize`
-
-You should know the `for`, `if`, `with`, and `include` Django template
-tags and the `forloop.first`, `forloop.last`, `forloop.counter`, and
-`forloop.counter0` variables.
+You should be able to construct nested or grouped data in controllers
+for later use in views.
 
 **Controllers**: You should know the syntax for defining URLs,
 including parameterized URLs, in `urls.py`.
@@ -125,29 +138,29 @@ including parameterized URLs, in `urls.py`.
 You should be able to query, create, and save Django model objects.
 Specifically, you should know the following query operators:
 
-- `filter`, `exclude`, `union`, `intersection`, and `distinct`
-- `order_by` and `reverse`
-- `count` and `aggregate`
-- `first` and `last`
-- `contains` and `exists`
+- `filter`, `exclude`, and `distinct`
+- `order_by`, `first`, and `last`
+- `count`, `contains`, and `exists`
 
-You should be able to use to query objects by field (as in
-`author="Tom Clancy"`; by field of a related object (as in
+You should be able to combine or chain query operators to execute
+complex queries. You should be able to use to query objects by field
+(as in `author="Tom Clancy"`; by field of a related object (as in
 `author_name="Tom Clancy"`); or by property of a field (as in
 `author_name__contains="Tom"`).
 
-You should be able to explain the "1 + N" problem and be able to use
-`select_related` to fix it.
+You should know when queries are actually executed and which objects
+are actually loaded. You should be able to explain the "1 + N" problem
+and be able to use `select_related` to fix it.
 
-You should be able to explain migrations, when they are created, when
-they are run, and what problem they solve.
+You should know the `get` and `get_object_or_404` helper function.
 
-----------------------------------------------------
+----------------------------------------------------------------------
 
 Topics below this line are not on the midterm, even if they were
-covered in class before the midterm was assessed.
+covered in class before the midterm was assessed. Items below this
+line may be changed before fall break.
 
-----------------------------------------------------
+----------------------------------------------------------------------
 
 Forms
 -----
