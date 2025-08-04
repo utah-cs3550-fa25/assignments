@@ -9,7 +9,10 @@ have it in this repository.
   should look better (nice photos of food?), be more fun (easy to
   pre-fill lots of recipes), and has less of a "school assignment"
   vibe.
-- I've added/kept in-class quizzes.
+- I've added/kept in-class quizzes. I've put them on the same day as
+  my "bonus" lectures, to make sure students come to those, and they
+  come a bit before the assignments on the same topics, to force some
+  basic understanding and help students complete the homework on time.
 - I've de-emphasized writing HTML, on the grounds that LLMs find this
   really easy. The study guide instead emphasizes reading and
   debugging HTML. The first assignment loses some of the HTML writing
