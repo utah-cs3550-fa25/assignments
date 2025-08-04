@@ -2,13 +2,13 @@ CS 3550 Syllabus, Fall 2025
 ===========================
 
 **Instructor**: Pavel Panchekha, [pavpan@cs.utah.edu](mailto:pavpan@cs.utah.edu), office MEB 2174 \
-**Assistants**: Khoa, Phoebe, Victoria, TBD \
+**Assistants**: Victoria, Khoa, Phoebe, Diego \
 **Lecture**: Tue/Thu 9:10–10:30 in WEB L104 \
 **Midterm**: Thu 2 October during class in WEB L104 \
 **Final**: Mon 9 December at 8:00am in WEB L104 \
 **Github**: https://github.com/utah-cs3550-fa25/ \
 **Office Hours**: Thu 12:00–13:00 in MEB 2174; TBD \
-**Piazza**: TBD
+**Piazza**: https://piazza.com/utah/fall2025/cs3550001fall2025
 
 # About the Course
 
