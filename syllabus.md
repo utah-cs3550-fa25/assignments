@@ -7,7 +7,7 @@ CS 3550 Syllabus, Fall 2025
 **Midterm**: Thu 2 October during class in WEB L104 \
 **Final**: Mon 9 December at 8:00am in WEB L104 \
 **Github**: https://github.com/utah-cs3550-fa25/ \
-**Office Hours**: Thu 12:00–13:00 in MEB 2174; TBD \
+**Office Hours**: Tue 12:00–13:00 in MEB 2174; TBD \
 **Piazza**: https://piazza.com/utah/fall2025/cs3550001fall2025
 
 # About the Course
