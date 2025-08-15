@@ -11,6 +11,8 @@ CS 3550 Syllabus, Fall 2025
 
 **Office hours:**
 
+| Instructor      | When            | Where    |
+|-----------------|-----------------|----------|
 | Prof. Panchekha | 12:00-13:00 Tue | MEB 2174 |
 | TA Phoebe       | 11:30-13:00 Wed | CADE lab |
 | TA Victoria     | 11:00-13:00 Thu | CADE lab |
