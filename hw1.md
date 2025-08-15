@@ -314,8 +314,8 @@ use the Nunito font. Make sure to add appropriate fallback fonts.
 Set the size of all body text on the page to 18 pixels. Set the size
 of headings to 25% larger than that, except for the main title (like
 the recipe name), which should be 80% larger. On the login page, set
-the text inside the login form to be 25% larger than the default, for
-the text entries, labels, and button text.
+the text inside the login form (including text entries, labels, and
+buttons) to be 25% larger than the default.
 
 Bold the appropriate text. For the "Prep time" and similar text, set
 the weight to 600, which is a little less bold than "bold".
@@ -339,6 +339,12 @@ Assign the appropriate text color to body text, links ("oak" normally
 and "cacao" on hover), and headings. Also use the appropriate color
 for the hash signs in the list of tags. Links should be underlined
 *only* on hover.
+
+On the main page, make the "Create and account" and "Browse recipes"
+links look like buttons. Make the background / foreground colors cream
+and oak (on hover, cacao and paper). Assign `padding: .5em 1em` to
+make the button itself a bit bigger, and round the corners into a
+"pill" shape.
 
 On the recipe page, rotate the photo by 2 degrees. You can do that by
 assigning `transform: rotate(2deg)`. It helps the page look a bit more
