@@ -173,9 +173,16 @@ With your final HTML and CSS, the five pages should look like this:
 
 ![A screenshot of the login page](hw1/login.png)
 
-While not visible in the screen shots, you should also make sure to
-use semantic HTML and minimize the number of unnecessary elements and
-attributes in your HTML.
+You'll need to use the following CSS properties:
+
+- `background-color` and `color`
+- `font-family`, `font-size`, `font-weight`, `text-decoration`, and `line-height`
+- `border`, `border-radius`, and `box-shadow`
+- `list-style`, `display`, and `transform`
+
+You should also make sure to use semantic HTML and minimize the number
+of unnecessary elements and attributes in your HTML. Use simple,
+tag-based selectors when possible.
 
 
 
@@ -205,15 +212,15 @@ following issues that we want to fix:
   supposed to be part of the web page. Find and delete it.
 - Unnecessary wrapper elements. ChatGPT inserts a lot of `<div>` and
   `<span>` elements, partly to support microdata (see below). Delete
-  them unless you're using them for styling or layout. There are
-  sometimes other wrapper elements that aren't needed once you remove
-  the extra content ChatGPT made up; for example, if you remove a
-  figure caption then you no longer need the `<figure>` element.
+  them unless you're using them for styling or layout. Likewise,
+  remove `<figure>` elements unless they combine an image with a
+  caption.
 - Header content. The page header should be the same for all pages,
   except of course that they should all have different page titles.
-  ChatGPT generated each page a bit differently. You'll probably want
-  to look at all of the page headings across all the pages, pick the
-  best combined heading, and copy that to all of the pages.
+  The page titles should follow a consistent format, like `Title -
+  Dishbook`. Since ChatGPT generated each page a bit differently,
+  you'll probably want to look at all of the page headings, combine
+  the best pieces, and copy that to all of the pages.
 - Heading hierarchy. ChatGPT doesn't always use the right heading
   number; make sure all of your headings are in order, with an `<h1>`
   for the page title and similarly-global headings, `<h2>` for
@@ -269,6 +276,10 @@ the same markup. As with Phase 2, make sure to write valid,
 well-indented, and easy-to-read HTML code. Don't add unnecessary
 elements or attributes, and only add `id`s and `class`es in later
 phases when it helps with styling.
+
+Mark the images on the page as lazy-loaded. This makes sure profile
+pages load quickly even for users with a lot of recipes and photos.
+Use the `loading` attribute for this.
 
 At the same time, make sure all of your HTML is valid. Use a clear
 heading hierarchy, make sure each `<input>` has a `<label>`, that
@@ -329,6 +340,13 @@ and "cacao" on hover), and headings. Also use the appropriate color
 for the hash signs in the list of tags. Links should be underlined
 *only* on hover.
 
+On the recipe page, rotate the photo by 2 degrees. You can do that by
+assigning `transform: rotate(2deg)`. It helps the page look a bit more
+casual, as if it's a paper cookbook that you pasted a photo into.
+Also, give the photo a five-pixel white border with a three-pixel
+corner radius; this makes it look a little bit like a polaroid photo,
+heightening the effect.
+
 Assign the appropriate background the to the page as a whole and also
 the main portion of the page where the page-specific content is.
 
@@ -336,8 +354,9 @@ Finally, assign the appropriate borders to the main portion of the
 page, in the heading, and on the login page. Match the width and color
 of each border.
 
-Hide the bullet points for the list of tags and ingredients. Keep the
-numbers for the list of steps.
+Hide the bullet points for the list of tags and ingredients, and in
+the nav bar, and for recipes on the home / search / profile pages.
+Keep the numbers for the list of steps.
 
 
 
