@@ -364,6 +364,10 @@ Hide the bullet points for the list of tags and ingredients, and in
 the nav bar, and for recipes on the home / search / profile pages.
 Keep the numbers for the list of steps.
 
+Some other elements on the page should also be hidden, most
+importantly `<label>`s and buttons for the search bar (both in the
+page header and on the search page). Give these elements a class of
+`visually-hidden` and assign these elements `display: none`.
 
 
 Write a cover sheet
