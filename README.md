@@ -16,7 +16,7 @@ This repository contains written material for the class, including:
   
 As well as homework assignments:
 
-* Homework 1 (HTML & CSS) \
+* [Homework 1 (HTML & CSS)](hw1.md) \
   Due 22 Aug and 29 Aug.
 * Homework 2 (Layout) \
   Due 5 Sep and 12 Sep.

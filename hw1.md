@@ -1,7 +1,7 @@
 CS 3550 Assignment 1 (HTML & CSS)
 =================================
 
-**Status**: Draft \
+**Status**: Final \
 **Due**: Phase 1 due **22 Aug**. Phase 2--5 due **29 Aug**.
 
 In this assignment, you will set up a web server and write HTML for
