@@ -163,15 +163,11 @@ page.
 
 With your final HTML and CSS, the five pages should look like this:
 
-![A screenshot of the home page](hw1/index.png)
-
-![A screenshot of the recipe page](hw1/recipe.png)
-
-![A screenshot of the search page](hw1/search.png)
-
-![A screenshot of the profile page](hw1/profile.png)
-
-![A screenshot of the login page](hw1/login.png)
+<img src="hw1/index.png" alt="A screenshot of the home page" width=25% height=25% />
+<img src="hw1/recipe.png" alt="A screenshot of the recipe page" width=25% height=25% />
+<img src="hw1/search.png" alt="A screenshot of the search page" width=25% height=25% />
+<img src="hw1/profile.png" alt="A screenshot of the profile page" width=25% height=25% />
+<img src="hw1/login.png" alt="A screenshot of the login page" width=25% height=25% />
 
 The pages are still pretty ugly---especially with those huge
 images---but we'll fix that in Homework 2.
