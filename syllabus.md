@@ -5,7 +5,7 @@ CS 3550 Syllabus, Fall 2025
 **Assistants**: Victoria, Khoa, Phoebe, Diego \
 **Lecture**: Tue/Thu 9:10–10:30 in WEB L104 \
 **Midterm**: Thu 2 October during class in WEB L104 \
-**Final**: Mon 9 December at 8:00am in WEB L104 \
+**Final**: Tue 9 December at 8:00am in WEB L104 \
 **Github**: https://github.com/utah-cs3550-fa25/ \
 **Piazza**: https://piazza.com/utah/fall2025/cs3550001fall2025
 
@@ -13,11 +13,15 @@ CS 3550 Syllabus, Fall 2025
 
 | Instructor      | When            | Where    |
 |-----------------|-----------------|----------|
-| Prof. Panchekha | 12:00-13:00 Tue | MEB 2174 |
+| Prof. Panchekha | 11:00-12:00 Tue | MEB 2174 |
+| TA Victoria     | 12:00-14:00 Tue | CADE lab |
 | TA Phoebe       | 11:30-13:00 Wed | CADE lab |
-| TA Victoria     | 11:00-13:00 Thu | CADE lab |
 | TA Diego        | 10:00-11:00 Fri | CADE lab |
 | TA Khao         | 12:00-13:30 Fri | CADE lab |
+
+We'll use the [TA
+Queue](https://ta-queue.utah.edu/queue?course_id=327) for office hours
+in the CADE lab.
 
 # About the Course
 
