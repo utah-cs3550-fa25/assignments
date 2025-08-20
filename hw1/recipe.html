@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weeknight Lemon Chicken Pasta | Dishbook</title>
+</head>
+<body>
+  <!-- Site Header -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="/">Dishbook</a>
+      <div class="site-header__profile" aria-label="Your profile">
+        <img class="profile__avatar" src="/assets/avatar.jpg" alt="Profile avatar of Jane Doe" width="40" height="40" />
+        <div class="profile__meta">
+          <span class="profile__name">Jane Doe</span>
+          <a class="profile__link" href="/profile">View profile</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Primary Navigation -->
+  <nav class="site-nav" aria-label="Primary">
+    <div class="site-nav__inner">
+      <ul class="site-nav__links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/cookbook">My Cookbook</a></li>
+      </ul>
+      <form class="site-nav__search" role="search" action="/search" method="get">
+        <label for="q" class="visually-hidden">Search recipes</label>
+        <input id="q" name="q" type="search" placeholder="Search recipes…" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Main Content: Recipe Page -->
+  <main id="main" class="main" tabindex="-1">
+    <article class="recipe" itemscope itemtype="https://schema.org/Recipe">
+
+      <header class="recipe__header">
+        <h1 class="recipe__title" itemprop="name">Weeknight Lemon Chicken Pasta</h1>
+        <span class="recipe__byline">By <a href="/profile/jane-doe" rel="author" itemprop="author">Jane Doe</a></span>
+        <span>Based on <a href="/recipe/3">Gordon Ramsey's
+            <a href="/recipe/29">Beef Wellington</a></span>
+        <ul class="recipe__tags" aria-label="Tags">
+          <li><a href="/tags/quick">quick</a></li>
+          <li><a href="/tags/chicken">chicken</a></li>
+          <li><a href="/tags/pasta">pasta</a></li>
+        </ul>
+      </header>
+
+      <section class="recipe__intro" aria-labelledby="desc-heading">
+        <h2 id="desc-heading" class="visually-hidden">Recipe overview</h2>
+        <figure class="recipe__photo" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+          <img src="/assets/recipes/lemon-chicken-pasta.jpg" alt="Bowl of lemon chicken pasta with parsley" width="800" height="600" />
+          <figcaption itemprop="caption">Bright, tangy, and done in 30 minutes.</figcaption>
+          <meta itemprop="url" content="/assets/recipes/lemon-chicken-pasta.jpg" />
+        </figure>
+        <div class="recipe__description">
+          <p itemprop="description">A fast, weeknight-friendly pasta with seared chicken, lemon, garlic, and parsley. Silky sauce, pantry staples, kid-approved.</p>
+          <ul class="recipe__meta">
+            <li><strong>Prep:</strong> <time itemprop="prepTime" datetime="PT10M">10 min</time></li>
+            <li><strong>Cook:</strong> <time itemprop="cookTime" datetime="PT20M">20 min</time></li>
+            <li><strong>Total:</strong> <time itemprop="totalTime" datetime="PT30M">30 min</time></li>
+            <li><strong>Yield:</strong> <span itemprop="recipeYield">4 servings</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Recipe content: 1/3 ingredients, 2/3 steps (stack on mobile via CSS) -->
+      <section class="recipe__body" aria-labelledby="recipe-heading">
+        <h2 id="recipe-heading" class="visually-hidden">Ingredients and steps</h2>
+
+        <aside class="recipe__ingredients" aria-labelledby="ingredients-heading">
+          <h3 id="ingredients-heading">Ingredients</h3>
+          <ul itemprop="recipeIngredient">
+            <li>12 oz pasta (spaghetti or linguine)</li>
+            <li>2 chicken breasts, thinly sliced</li>
+            <li>2 tbsp olive oil</li>
+            <li>3 cloves garlic, minced</li>
+            <li>1 lemon (zest + 3 tbsp juice)</li>
+            <li>1/2 cup grated Parmesan</li>
+            <li>1/2 cup pasta water (reserved)</li>
+            <li>Salt & pepper</li>
+            <li>2 tbsp butter</li>
+            <li>1/4 cup chopped parsley</li>
+          </ul>
+        </aside>
+
+        <section class="recipe__steps" aria-labelledby="steps-heading">
+          <h3 id="steps-heading">Steps</h3>
+          <ol itemprop="recipeInstructions">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/HowToStep">
+              <span itemprop="text">Cook pasta in salted water until al dente. Reserve 1/2 cup pasta water; drain.</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/HowToStep">
+              <span itemprop="text">Season chicken with salt and pepper. Sear in olive oil over medium-high until browned and cooked through; remove.</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/HowToStep">
+              <span itemprop="text">Lower heat; add butter and garlic, cook 30 seconds. Stir in lemon zest and juice.</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/HowToStep">
+              <span itemprop="text">Add pasta, chicken, and some reserved water; toss. Off heat, add Parmesan until glossy. Adjust with more water if needed.</span>
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/HowToStep">
+              <span itemprop="text">Finish with parsley, season to taste, and serve immediately.</span>
+            </li>
+          </ol>
+        </section>
+      </section>
+
+      <!-- Optional: Nutrition (easy to hide/show later) -->
+      <section class="recipe__nutrition" aria-labelledby="nutrition-heading">
+        <h3 id="nutrition-heading">Nutrition (per serving)</h3>
+        <p><span itemprop="calories">520 calories</span> · <span itemprop="proteinContent">31g protein</span> · <span itemprop="fatContent">18g fat</span> · <span itemprop="carbohydrateContent">62g carbs</span></p>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Basic footer -->
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <time datetime="2025">2025</time> TastyBytes</p>
+  </footer>
+</body>
+</html>

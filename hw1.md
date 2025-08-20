@@ -173,6 +173,9 @@ With your final HTML and CSS, the five pages should look like this:
 
 ![A screenshot of the login page](hw1/login.png)
 
+The pages are still pretty ugly---especially with those huge
+images---but we'll fix that in Homework 2.
+
 You'll need to use the following CSS properties:
 
 - `background-color` and `color`
@@ -190,7 +193,7 @@ Phase 2: Clean up generated HTML
 --------------------------------
 
 Download the files is the [`hw1` folder](hw1/); they should be HTML
-files `index.html`, `recipe.html`, `login.html`, `search.html`. Save
+files `index.html`, `login.html`, `recipe.html`, `search.html`. Save
 these files to your `static/` folder. Run the server and check that
 you can access these files from
 http://localhost:8000/static/index.html; if you open up that page, you
@@ -201,58 +204,86 @@ describing Dishbook and what's supposed to be on each page. This gives
 you something to work from, but unfortunately, this starting point
 isn't very good, so in this Phase you're going to clean it up.
 
-Go through each HTML file one at a time. Keep a look out for the
-following issues that we want to fix:
+Go through each HTML file one at a time. There are a lot of issues
+to fix. First, remove a bunch of junk that ChatGPT added needlessly:
 
-- Broken links. All of the links on all of the pages should work, and
-  all of the images should show up. You can download the necessary
-  images from the [`hw1` folder](hw1/), put them in your `static/`
-  folder, and then link to them as `/static/<name>.png`.
 - Extra content. ChatGPT sometimes inserts content that simply isn't
-  supposed to be part of the web page. Find and delete it.
+  supposed to be part of the web page. Find and delete it. ChatGPT did
+  a lot of this! Compare to the screenshot to know what content you
+  actually need.
+- Extra comments. ChatGPT also inserted some comments including some
+  commented code. It was trying to be helpful, I guess, but a lot of
+  them are irrelevant or wrong, delete them.
 - Unnecessary wrapper elements. ChatGPT inserts a lot of `<div>` and
-  `<span>` elements, partly to support microdata (see below). Delete
-  them unless you're using them for styling or layout. Likewise,
-  remove `<figure>` elements unless they combine an image with a
-  caption.
-- Header content. The page header should be the same for all pages,
-  except of course that they should all have different page titles.
-  The page titles should follow a consistent format, like `Title -
-  Dishbook`. Since ChatGPT generated each page a bit differently,
-  you'll probably want to look at all of the page headings, combine
-  the best pieces, and copy that to all of the pages.
-- Heading hierarchy. ChatGPT doesn't always use the right heading
-  number; make sure all of your headings are in order, with an `<h1>`
-  for the page title and similarly-global headings, `<h2>` for
-  subsections below that, and so on.
+  `<span>` elements, partly to support microdata (see below) and
+  partly just, I don't know, for fun. Delete them. You can always add
+  them back if you need them for styling or layout. Likewise, remove
+  `<figure>` elements unless they combine an image with a caption.
 - Unnecessary `class` and `id` attributes. You only need to add
   classes and IDs when they are necessary for something, like classes
-  for CSS styling or IDs for linking labels and inputs.
-- Unnecessary `role` and `aria-label` attributes. ChatGPT loves adding
-  these for some reason. Most of the `role`s are redundant with the
-  HTML elements used and most of the `aria-label`s should be replaced
-  by proper headings.
-- Other unnecessary attributes. For each attribute, try removing it;
-  does it affect the page at all? ChatGPT likes to explicitly assign
-  the default value of attributes like `type`; there's no reason to do
-  that.
-- For the "prep time", "cook time", and so on, use an HTML definition
-  list element `<dl>`. Use
-  [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl)
-  to learn how to use this unusual element.
+  for CSS styling or IDs for linking labels and inputs. Otherwise it's
+  just going to confuse you. Gone!
+- Hidden headings. ChatGPT likes adding header elements and then
+  giving them the class `visually-hidden` to hide them on the page.
+  There are sometimes reasons to do this but we're going to remove
+  these headings. When you remove these elements, make sure to adjust
+  the heading hierarchy appropriately.
 - Microdata. The `itemtype`, `itemscope`, and `itemprop` attributes
   are for something called HTML Microdata, which are used by search
   engines. We won't be using microdata, so you can remove these
   attributes and associated elements.
-- Some of the tags and attributes have typos; I inserted those on
-  purpose. Fix them.
+- Unnecessary `role` and `aria-label` attributes. ChatGPT loves adding
+  these for some reason. Most of the `role`s are redundant with the
+  HTML elements used and most of the `aria-label`s duplicate proper
+  headings.
+- Other unnecessary attributes. ChatGPT likes to explicitly assign the
+  default value of attributes like `type`; there's no reason to do
+  that.
 
 Also remove the implicit `<html>`, `<head>`, and `<body>` elements and
 make sure all pages have the standard `<!doctype html>` doctype.
+  
+Some of these extra elements don't hurt (ChatGPT did an overall decent
+job of the microdata!) but it's bad to have code you don't understand
+on the page and having all of this extra junk makes it hard to make
+changes. Now that it's gone fix the following issues on the page:
+
+- Broken links. All of the links on all of the pages should work, and
+  all of the images should show up. You can download the necessary
+  images from the [`hw1` folder](hw1/), put them in your `static/`
+  folder, and then link to them as `/static/<name>.png`. Any time you
+  see a recipe, link to the `recipe.html` page and any time you see a 
+- Heading hierarchy. ChatGPT doesn't always use the right heading
+  number; make sure all of your headings are in order, with an `<h1>`
+  for the page title and similarly-global headings, `<h2>` for
+  subsections below that, and so on.
+- Header content. The page header should be the same for all pages,
+  except of course that they should all have different page titles.
+  The page titles should follow a consistent format, like `Title -
+  Dishbook`. All of the pages should show a "logged in" user named
+  "Jane Doe" (like on the recipe page). Since ChatGPT generated each
+  page a bit differently, you'll probably want to look at all of the
+  page headings, combine the best pieces, and copy that to all of the
+  pages.
+- Repeated content. Lots of the pages show a list of tags, sometimes
+  more than once. Make sure every instance uses the same HTML
+  structure. Similarly, lots of show a list of recipes; again, make
+  sure each recipe uses the same HTML structure. This is important
+  because eventually we'll generate this HTML programmatically.
 
 Review your final HTML. Make sure that you know the meaning and
 purpose of every element and attribute on the page.
 
+Now make a couple of additional changes to improve HTML semantics:
+
+- For the "prep time", "cook time", and so on, use an HTML definition
+  list element `<dl>`. Use
+  [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl)
+  to learn how to use this unusual element.
+- On the recipe page, divide the page into four `<section>` elements,
+  for the sidebar, recipe description, ingredients, and steps. The
+  sections should be siblings in the tree, not nested. Note that
+  ChatGPT didn't organize the page right.
 
 
 Phase 3: Write a profile page

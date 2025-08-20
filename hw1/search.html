@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dishbook — Search</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+
+  <!-- Site Header / Nav -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <a class="brand" href="/">Dishbook</a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/cookbook">My Cookbook</a></li>
+        </ul>
+        <form class="site-nav__search" role="search" action="/search" method="get">
+          <label for="q-top" class="visually-hidden">Search recipes</label>
+          <input id="q-top" name="q" type="search" placeholder="Search recipes…" />
+          <button type="submit">Search</button>
+        </form>
+        <ul class="site-nav__auth">
+          <li><a href="/login">Sign in</a></li>
+          <li><a href="/signup">Create account</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Search controls -->
+    <section class="search" aria-labelledby="search-heading">
+      <div class="search__inner">
+        <h1 id="search-heading">Search recipes</h1>
+        <form class="search-form" role="search" action="/search" method="get">
+          <div class="search-form__row">
+            <label for="q" class="visually-hidden">Search query</label>
+            <input id="q" name="q" type="search" required placeholder="Try: chicken, cinnamon rolls, #quick, time:&lt;30" />
+            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+
+          <div class="search-form__filters" aria-label="Filters">
+            <fieldset class="filter-group">
+              <legend class="filter-title">Tags</legend>
+              <label><input type="checkbox" name="tag" value="quick"> quick</label>
+              <label><input type="checkbox" name="tag" value="comfort"> comfort</label>
+              <label><input type="checkbox" name="tag" value="vegetarian"> vegetarian</label>
+            </fieldset>
+
+            <fieldset class="filter-group">
+              <legend class="filter-title">Time</legend>
+              <label for="time-max" class="visually-hidden">Max time</label>
+              <select id="time-max" name="time-max">
+                <option value="">Any time</option>
+                <option value="15">Under 15 min</option>
+                <option value="30">Under 30 min</option>
+                <option value="60">Under 1 hour</option>
+              </select>
+            </fieldset>
+
+            <fieldset class="filter-group">
+              <legend class="filter-title">Sort</legend>
+              <label for="sort" class="visually-hidden">Sort results</label>
+              <select id="sort" name="sort">
+                <option value="relevance">Relevance</option>
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="popular">Most saved</option>
+              </select>
+            </fieldset>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Results summary + count -->
+    <section class="results" aria-labelledby="results-heading">
+      <div class="section-header">
+        <h2 id="results-heading">Results</h2>
+        <p class="section-sub" aria-live="polite">Showing 3 of 128 results for “chicken”.</p>
+      </div>
+
+      <!-- Cards grid (3-up on desktop) -->
+      <ul class="card-grid" aria-label="Recipe results">
+        <li>
+          <article class="recipe-card">
+            <a class="card__link" href="/recipe/lemon-chicken-pasta">
+              <figure class="card__media">
+                <img src="/assets/recipes/lemon-chicken-pasta.jpg" alt="Bowl of lemon chicken pasta with parsley" width="640" height="480" loading="lazy" />
+              </figure>
+              <div class="card__body">
+                <h3 class="card__title">Weeknight Lemon Chicken Pasta</h3>
+                <ul class="tags">
+                  <li><a href="/s?q=tag%3Aquick">quick</a></li>
+                  <li><a href="/s?q=tag%3Achicken">chicken</a></li>
+                  <li><a href="/s?q=tag%3Apasta">pasta</a></li>
+                </ul>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="recipe-card">
+            <a class="card__link" href="/recipe/chicken-broccoli-casserole">
+              <figure class="card__media">
+                <img src="/assets/recipes/chicken-broccoli-casserole.jpg" alt="Cheesy chicken broccoli casserole in a baking dish" width="640" height="480" loading="lazy" />
+              </figure>
+              <div class="card__body">
+                <h3 class="card__title">Chicken Broccoli Casserole</h3>
+                <ul class="tags">
+                  <li><a href="/s?q=tag%3Acomfort">comfort</a></li>
+                  <li><a href="/s?q=tag%3Acrowd">crowd</a></li>
+                  <li><a href="/s?q=tag%3Afreezer">freezer</a></li>
+                </ul>
+              </div>
+            </a>
+          </article>
+        </li>
+
+        <li>
+          <article class="recipe-card">
+            <a class="card__link" href="/recipe/teriyaki-chicken-bowl">
+              <figure class="card__media">
+                <img src="/assets/recipes/teriyaki-chicken-bowl.jpg" alt="Teriyaki chicken bowl with rice and vegetables" width="640" height="480" loading="lazy" />
+              </figure>
+              <div class="card__body">
+                <h3 class="card__title">Teriyaki Chicken Bowl</h3>
+                <ul class="tags">
+                  <li><a href="/s?q=tag%3Aquick">quick</a></li>
+                  <li><a href="/s?q=tag%3Atakeout-at-home">takeout-at-home</a></li>
+                  <li><a href="/s?q=tag%3Alunch">lunch</a></li>
+                </ul>
+              </div>
+            </a>
+          </article>
+        </li>
+      </ul>
+
+      <!-- Pagination -->
+      <nav class="pagination" aria-label="Pagination">
+        <a class="prev" href="/search?q=chicken&page=1">Previous</a>
+        <ol>
+          <li><a href="/search?q=chicken&page=1">1</a></li>
+          <li><a href="/search?q=chicken&page=2" aria-current="page">2</a></li>
+          <li><a href="/search?q=chicken&page=3">3</a></li>
+        </ol>
+        <a class="next" href="/search?q=chicken&page=3">Next</a>
+      </nav>
+
+      <!-- Empty state example (keep for reference; remove when templating) -->
+      <!--
+      <div class="empty" role="status">
+        <p>No recipes found for “quinoa brownies”. Try fewer filters or a different search.</p>
+        <p><a href="/cookbook">Browse all recipes</a></p>
+      </div>
+      -->
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>&copy; <time datetime="2025">2025</time> Dishbook</p>
+  </footer>
+</body>
+</html>
