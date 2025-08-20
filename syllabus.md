@@ -83,25 +83,28 @@ average.
 The following is an aspirational course schedule. It may change as the
 course progresses; the instructor will announce changes in class.
 
-| Week starting | Topic                  | Assessments        |
-|---------------|------------------------|--------------------|
-| August 18     | HTML                   |                    |
-| August 25     | CSS                    | Quiz 1, Homework 1 |
-| September 1   | Layout                 |                    |
-| September 8   | Flex-box               | Quiz 2, Homework 2 |
-| September 15  | Django                 |                    |
-| September 22  | Back-ends              | Homework 3         |
-| September 29  | Review and **Midterm** | Midterm            |
-| October 6     | *Fall break*           |                    |
-| October 13    | Forms                  | Quiz 3             |
-| October 20    | Auth                   | Homework 4         |
-| October 27    | Security               | Quiz 4             |
-| November 3    | JavaScript             | Homework 5         |
-| November 10   | AJAX                   | Quiz 5             |
-| November 17   | Cloud                  | Homework 6         |
-| November 24   | Scaling                |                    |
-| December 1    | Review                 | Homework 7         |
-| December 8    | **Final**              | Final              |
+| Week (Mon)   | Topic                  | Assessments        |
+|--------------|------------------------|--------------------|
+| August 18    | HTML                   |                    |
+| August 25    | CSS                    | Quiz 1, Homework 1 |
+| September 1  | Layout                 |                    |
+| September 8  | Flex-box               | Quiz 2, Homework 2 |
+| September 15 | Django                 |                    |
+| September 22 | Back-ends              | Homework 3         |
+| September 29 | Review and **Midterm** | Midterm            |
+| October 6    | *Fall break*           |                    |
+| October 13   | Forms                  | Quiz 3             |
+| October 20   | Auth                   | Homework 4         |
+| October 27   | Security               | Quiz 4             |
+| November 3   | JavaScript             | Homework 5         |
+| November 10  | AJAX                   | Quiz 5             |
+| November 17  | Cloud                  | Homework 6         |
+| November 24  | Scaling                |                    |
+| December 1   | Review                 | Homework 7         |
+| December 8   | **Final**              | Final              |
+
+Lectures are Tuesday and Thursday, Quizzes and Midterm Thursdays,
+Homeworks due Friday, and the Final on Tuesday.
 
 # Attendance
 
