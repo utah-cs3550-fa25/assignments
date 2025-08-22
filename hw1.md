@@ -250,7 +250,8 @@ changes. Now that it's gone fix the following issues on the page:
   all of the images should show up. You can download the necessary
   images from the [`hw1` folder](hw1/), put them in your `static/`
   folder, and then link to them as `/static/<name>.png`. Any time you
-  see a recipe, link to the `recipe.html` page and any time you see a 
+  see a recipe, link to the `recipe.html` page (similarly for users,
+  tags, and so on: each one should link to the same page).
 - Heading hierarchy. ChatGPT doesn't always use the right heading
   number; make sure all of your headings are in order, with an `<h1>`
   for the page title and similarly-global headings, `<h2>` for
