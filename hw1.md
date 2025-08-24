@@ -280,9 +280,10 @@ Now make a couple of additional changes to improve HTML semantics:
   [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl)
   to learn how to use this unusual element.
 - On the recipe page, divide the page into four `<section>` elements,
-  for the sidebar, recipe description, ingredients, and steps. The
-  sections should be siblings in the tree, not nested. Note that
-  ChatGPT didn't organize the page right.
+  for the sidebar (photo and cook time information), recipe
+  description, ingredients, and steps. The sections should be siblings
+  in the tree, not nested. Note that ChatGPT didn't organize the page
+  right.
 
 
 Phase 3: Write a profile page
