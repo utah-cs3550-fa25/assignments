@@ -248,7 +248,7 @@ changes. Now that it's gone fix the following issues on the page:
 
 - Broken links. All of the links on all of the pages should work, and
   all of the images should show up. You can download the necessary
-  images from the [`hw1` folder](hw1/), put them in your `static/`
+  images from the [`assets` folder](assets/), put them in your `static/`
   folder, and then link to them as `/static/<name>.png`. Any time you
   see a recipe, link to the `recipe.html` page (similarly for users,
   tags, and so on: each one should link to the same page).
@@ -292,8 +292,9 @@ Phase 3: Write a profile page
 Create a new file in `static/` named `profile.html`. Copy and paste
 the page heading into it, and then write the page content. The page
 should contain everything in the profile screenshot: the user's full
-name (Alice Apron) and photo (find it in the [`hw1` folder](hw1/));
-how long they've been a user; and the following "about me" text:
+name (Ben Braiser) and photo (find it in the [`assets`
+folder](assets/)); how long they've been a user; and the following
+"about me" text:
 
 > I cook the kind of food that feels like home, and wander the world
 > from my stove. My recipes are weeknight-friendly, written with clear
