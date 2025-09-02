@@ -18,7 +18,7 @@ As well as homework assignments:
 
 * [Homework 1 (HTML & CSS)](hw1.md) \
   Due 22 Aug and 29 Aug.
-* Homework 2 (Layout) \
+* [Homework 2 (Layout)](hw2.md) \
   Due 5 Sep and 12 Sep.
 * Homework 3 (Models and Views) \
   Due 19 Sep and 26 Sep.
