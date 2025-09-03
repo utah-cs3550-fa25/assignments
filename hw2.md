@@ -82,40 +82,113 @@ following properties:
 - `justify-content` and `align-items`
 - `flex-wrap` and `text-wrap`
 - `padding` and, optionally, `margin`
-- `text-indent` when directed
+- `text-indent` and `text-wrap` when directed
 
 You may also want to use `calc` in various places to simplify
 implementation.
 
 
 
-Phase 2: Centering the web page body
-------------------------------------
+Phase 2: General page layout
+----------------------------
 
-Write CSS to center all of the page content. Use flex-box. You may
-want to apply CSS to the `html` and `body` elements.
-
-Make sure that the page content is at most `700px` wide; this will
+Write CSS so that the page content is at most `700px` wide; this will
 make body text about 80 characters wide, which is about as wide as you
-want to go.
+want to go. Center the page content. On pages narrower than 700 pixels
+make sure that the page content gets narrower. Use flex-box. You may
+want to apply CSS to the `html` and `body` elements. Add a `.5rem` gap
+between the left and right edges of the browser window and the page
+content itself; this won't matter for wide screens but will matter
+for narrower ones.
 
-Test each web page at various sizes. At more than 700 pixels wide, the
-page content should be 700 pixels wide and centered on the page. At
-narrower browser window sizes, the page content should be as wide as
-the screen and text should wrap so it's all still readable. (At some
-point individual words will start poking out the side of the screen;
-don't worry about this yet.)
+Add a `3rem` gap between the page header (including the menu) and the
+main area of the page (containing, like, the recipe).
 
-
-
-Phase 3: Headers, tags, sidebars, cards
----------------------------------------
+Add a `1rem` gap between the border of the main area and the content
+inside. Inside that main area, add a `2rem` gap between the heading
+area and the rest of it. On the recipe page, also add a `2rem` gap
+between the recipe description and the recipe ingredients.
 
 Next, lay out the page header. The page header should consist of two
 rows; the top row should contain the "Dishbook" title and the "View
 profile" links, while the second row should contain the "Home" and "My
-Cookbook" links as well as the search form. Test that the profile
-information and search form stay right-aligned as the page resizes.
+Cookbook" links as well as the search form.
+
+Make sure that the "Home" and "My Cookbook" links are placed
+horizontally; add a gap of `1rem` between links. Make sure that the
+"View Profile" link and the "Dishbook" title line up at the bottom of
+the text. Make the profile information and search form right-aligned.
+Add a `.25rem` gap between the search bar and the horizontal line
+above it, and add `.25rem` of padding inside the search bar and search
+button.
+
+
+
+Phase 3: The recipe page
+------------------------
+
+Let's start with the header at the top of the recipe page. This has
+two parts: the recipe name itself, and then a bunch of metadata like
+the author, whether the recipe has been featured, its tags, and so on.
+Make the metadata blocks lay out horizontally, with `1.5rem` gaps in
+between. If there are too many to fit on one line, make them wrap to
+two lines; don't have any gap between lines. The list of tags should
+also be horizontal, with an `.5rem` gap between tags.
+
+Give the ingredients list a left-padding of `1rem` and a `text-indent`
+of `-1rem`; the effect should be a kind of hanging indent where each
+ingredient starts at the left edge of the ingredients list, but long
+ingredient names are indented a bit to help you see where an
+ingredient continues onto the next line.
+
+Give the list of steps a left-padding of `1em` to line up the step
+numbers with the edge of the "Steps" label. By default the numbers
+start about `1em` to the left of the left edge of each `<li>` tag.
+
+Make the photo on the recipe page no wider than the sidebar. Add
+`.5rem` of whitespace below it. Now focus on the Prep/Cook/Total/Yield
+information below the photo. Each "Label: value" should be on one row,
+with `.5rem` gap between them and `.25rem` gap between rows. The label
+should always take up a quarter of the remaining space, while the
+label takes up the other three quarters. This effect is probably
+easiest to achieve using `calc` and `flex-wrap`.
+
+
+
+Phase 4: The index page
+-----------------------
+
+Let's take a look at the buttons on the index page. Those should (of
+course) be centered and horizontally adjacent, with a `1rem` gap
+between them and also a `1rem` gap between the previous paragraph and
+the buttons.
+
+Next, let's work on the "card" layout that we use on the index page,
+and also on the search and profile pages.
+
+The cards go in a grid, with three cards per row and `1rem` gaps in
+between and also `1rem` gaps along the left and right (but not top and
+bottom) edges. Inside each card, there should be a `.5rem` gap between
+the card edge and the content. The photo on the card (if any) should
+be no wider than the card.
+
+The cards can be different heights (either due to long recipe names,
+lots of tags, or some recipes having photos and others not), in which
+case each row should be aligned at the top but different rows can have
+different sizes.
+
+Cards have tags inside. Since cards are narrow, we have to allow the
+tags to wrap onto multiple lines; don't allow any gap between lines
+but keep the gap between tags at `0.5rem`. Don't allow the tag name
+itself to wrap by setting its `text-wrap` to `nowrap`.
+
+On the search page, make the actual search box as wide as it can be,
+with `.25rem` of padding inside so that search text isn't cramped.
+
+
+
+Phase 5: Responsive layout
+--------------------------
 
 On the recipe page, set up the layout where the photo/metadata is
 side-by-side with the recipe description and the ingredients are
@@ -131,109 +204,65 @@ and `flex-shrink`, or you could use `width` with `calc` values. Either
 way is fine. Make sure the two sidebar pairs line up on the screen
 even as you resize the screen.
 
-Now focus on the header at the top of the recipe page.
+However, if the screen width is `500px` or narrower, the sidebars will
+get too narrow (try it!). So add CSS that does away with sidebars when
+the page is too narrow. Without sidebars, the order of page elements
+should be photo & metadata, description, ingredients, and then steps.
+There should be a `2rem` gap between each.
 
+Also, for narow screens, the extra padding around the edges of the
+screen wastes space. Make that padding disappear below 500 pxiels.
+Also remove the left and right border, which would look weird right up
+against the screen edge. Add back `0.5rem` of padding inside the page
+header instead. Make sure the horizontal line inside the page header
+goes edge-to-edge.
 
+Now, switch to the login page. Make each label / text box combination
+one row, with a `1rem` gap in between. Make each text box 80% the
+width, and make it right-aligned. Give each text box `0.25rem` of
+padding. Set the `align-items` of each label/text box combination to
+`baseline`; this is similar to `end` but it lines things up according
+to the "text baseline", which is the imaginary line on which English
+text is written.
 
+Make the login button 50% of the width of the page, and center it.
 
-Phase 4: Card layouts
----------------------
+However, this won't look good if the page starts shrinking below 700px
+(try it!). So for pages less than 700px wide, instead put the label
+and the text box on separate lines, with no gap between them, and then
+add `1rem` of gap between the username box and the password label.
 
-The Dishbook website will use two main fonts:
+Now head back to the search page. Three cards looks good on wide
+screens, but once the screen gets small those cards get too small.
+Let's do two cards per row below `600px` and one card per row below
+`400px`. This way the cards are never much less than 200 pixels wide.
 
-- `Nunito`, a friendly, rounded, sans-serif font for body text
-- `Playwrite USA Traditional`, a cursive font for headings
+Test every page at a range of sizes. Make sure you test at least:
 
-These fonts give Dishbook a friendly, cozy, hand-made feeling. Find
-both fonts on Google Fonts. Get the "embed code" for them; on the
-"embed code" page configure Nunito to include both italic and roman at
-all weights, but for Playwrite USA Traditional only include 400
-weight. By selecting only the parts of a font we need, we reduce
-download size and make our web page faster to load. Add the HTML embed
-code provided by Google Fonts to the beginning of each HTML page.
+1. Below 400 pixels; an iPhone 12 Pro would see this
+2. Between 400 and 500 pixels; a Pixel 7 would see this
+3. Between 500 and 600 pixels; a Surface Duo would see this
+4. Between 600 and 700 pixels; an iPhone SE in landscape mode would
+   see this
+5. Over 700 pixels; desktop users would see this
 
-Create a `main.css` file in your `static/` folder, and `<link>` to it
-from every HTML file. You'll be adding CSS code to this file to make
-the Dishbook web page look more like the screenshot.
+Make sure the appearance of the page is reasonable at every size.
 
-First, set all headings to use the Playwrite USA Traditional font; in
-CSS, this font is called `Playwrite US Trad`. Set all other text to
-use the Nunito font. Make sure to add appropriate fallback fonts.
-
-Set the size of all body text on the page to 18 pixels. Set the size
-of headings to 25% larger than that, except for the main title (like
-the recipe name), which should be 80% larger. On the login page, set
-the text inside the login form (including text entries, labels, and
-buttons) to be 25% larger than the default.
-
-Bold the appropriate text. For the "Prep time" and similar text, set
-the weight to 600, which is a little less bold than "bold".
-
-Set the `line-height` of the ingredients, steps, and description to
-1.25. Don't change the line height of other text on the page, like the
-headings, they'll get too spaced out.
-
-
-
-Phase 5: Responsive layout
---------------------------
-
-The page uses just a couple colors: #F7F1E8 "cream", #2E261C "cast
-iron", #A8570C "cacao", #FFF9F1 "paper", #888 "ash", #8B5E34 "oak",
-and in a few places #FFF pure white. Note that these aren't the
-standard names for these colors, just thematically appropriate names
-chosen to help you remember which is which.
-
-Assign the appropriate text color to body text, links ("oak" normally
-and "cacao" on hover), and headings. Also use the appropriate color
-for the hash signs in the list of tags. Links should be underlined
-*only* on hover.
-
-On the main page, make the "Create and account" and "Browse recipes"
-links look like buttons. Make the background / foreground colors cream
-and oak (on hover, cacao and paper). Assign `padding: .5em 1em` to
-make the button itself a bit bigger, and round the corners into a
-"pill" shape.
-
-On the recipe page, rotate the photo by 2 degrees. You can do that by
-assigning `transform: rotate(2deg)`. It helps the page look a bit more
-casual, as if it's a paper cookbook that you pasted a photo into.
-Also, give the photo a five-pixel white border with a three-pixel
-corner radius; this makes it look a little bit like a polaroid photo,
-heightening the effect.
-
-Assign the appropriate background the to the page as a whole and also
-the main portion of the page where the page-specific content is.
-
-Finally, assign the appropriate borders to the main portion of the
-page, in the heading, and on the login page. Match the width and color
-of each border.
-
-Hide the bullet points for the list of tags and ingredients, and in
-the nav bar, and for recipes on the home / search / profile pages.
-Keep the numbers for the list of steps.
-
-Some other elements on the page should also be hidden, most
-importantly `<label>`s and buttons for the search bar (both in the
-page header and on the search page). Give these elements a class of
-`visually-hidden` and assign these elements `display: none`.
 
 
 Write a cover sheet
 -------------------
 
 Rerun `python3 manage.py runserver` and confirm that every page looks
-as expected. Also confirm that all of the links work and that all of
-the HTML source code is readable. If you find any problems, use the
-browser developer tools or an HTML validator to understand and correct
-the problem.
+as expected. Try multiple page sizes, from under 400 to over 700
+pixels and all sizes in between. Test every page.
 
 Once you are sure everything works correctly, copy-and-paste the
-following text into a new empty text file called "HW1.md" located
+following text into a new empty text file called "HW2.md" located
 directly in your repository (not in the `static/` folder):
 
 ```
-Homework 1 Cover Sheet
+Homework 2 Cover Sheet
 ----------------------
 
 In this assignment, I completed:
@@ -251,8 +280,7 @@ I discussed this assignment with:
 - ...
 
 [ ] I solemnly swear that I wrote every line of code submitted as part
-of this assignment (except Django's auto-generated code and the
-assignment starter HTML).
+of this assignment.
 
 The most interesting thing I learned in this assignment was ...
 
@@ -282,24 +310,7 @@ easier.
 How you will use this
 ---------------------
 
-HTML and CSS are the core front-end technologies. Everything you see
-on every web page, all across the web, comes back to these two
-technologies, and they're also typically the starting point for making
-a new website: establishing the right HTML structure and applying
-basic styles with CSS.
-
-In [Assignment 2](hw2.md) we'll go further to establish the layout of
-the web page and make sure the page works on mobile devices. In most
-web pages, that's a critical requirement. Then, in [Assignment
-3](hw3.md), we'll start generating the HTML programmatically, based on
-data in a database. For example, each step in a recipe will be one
-iteration of a `for` loop. That's how most web sites generate HTML.
-
-Writing valid, semantic HTML is important because it helps with
-styling, search engine results, and accessibility. For example, `alt`
-text helps search engines find pages with relevant images. And it also
-helps blind people who use screen readers. (And if that's not you,
-now, consider that things may change as you get older.)
+???
 
 
 
@@ -314,38 +325,44 @@ different weights:
 - Your repository must contain a CSS Reset in its `main.css` file
 - Each page must have the `<meta name=viewport>` tag.
   
-If you pass all auto-tests up to and including "Checking that
-`/static/profile.html` has a `<meta name=viewport>`", then you have
-completed this phase.
+If you pass all auto-tests up to and including "Check that
+`/static/profile.html` has a `<meta name=viewport>` tag", then you
+have completed this phase.
 
-**Phase 2** is worth 10 points. It is graded on:
+**Phase 2** is worth 15 points. It is graded on:
 
-- Page content is centered on all pages
-- Flex-box used to do so
-- Text wraps and no scrollbars appear below 700 pixels wide
+- Page content is centered on all pages, 700 pixels wide, and narrower
+  on narrow screens
+- Page header laid out in two rows, with all content horizontal and
+  correctly vertically aligned
+- Profile links and search box right-aligned
 
-**Phase 3** is worth 15 points. It is graded on:
+**Phase 3** is worth 25 points. It is graded on:
 
-- All of the required content must be present.
-- All links and images on the page work
-- Appropriate HTML tags and attributes are used for each part of the page.
-- The page header is identical to other pages and all recipes card
-  use identical structure.
+- Heading area laid out correctly, with metadata (including tags) laid
+  out horizontally and wrapping
+- Photo has the correct width, with the "polaroid effect" and correct
+  spacing
+- Prep/Cook/Total/Yield section uses correct layout
+- Indentation of ingredients and steps is correct
 
-**Phase 4** is worth 20 points. Is is graded on:
+**Phase 4** is worth 20. Is is graded on:
 
-- The page must include the correct fonts and link to a `main.css` file
-- The correct font must be used for all elements
-- The correct font size and weight must be used for all elements
-- The correct line height must be used for all elements
+- Cards are correct size and have the correct whitespace
+- Cards wrap appropriately to multiple lines, and align correctly
+  within a line. Tags, but not any single tag, wrap to multiple lines.
+- Buttons and search field have the correct size, alignment, and
+  whitespace.
 
-**Phase 5** is worth 20 points. It is graded on:
+**Phase 5** is worth 30 points. It is graded on:
 
-- All text must have the appropriate color
-- All backgrounds must be the appropriate color
-- All borders must be the appropriate colors, thicknesses, and radii
-- Tags and ingredients must not have bullet points, but steps should
-  still be numbered.
+- Sidebar exist for large screens, resize correctly, and disappear
+  for screens less than 500 pixels wide
+- Login form puts labels and text boxes side by side for wide screens,
+  but not for narrow screens. Spacing and alignment is appropriate.
+- The number of cards changes with the size of the screen as desired.
+- The page padding and border disappear for narrow screens, and the
+  page header adjusts appropriately.
 
 **Cover Sheet** is worth 5 points. It is graded on:
 
