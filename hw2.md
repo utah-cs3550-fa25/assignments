@@ -191,7 +191,7 @@ with `.25rem` of padding inside so that search text isn't cramped.
 
 On the profile page, make the user logo appear to the right of the
 page title / metadata. Make it `5rem` wide and tall, and align it to
-the right of the main content area.
+the right of the main content area. Keep a `1rem` gap in between.
 
 
 Phase 5: Responsive layout
