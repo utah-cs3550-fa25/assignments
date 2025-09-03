@@ -92,6 +92,10 @@ implementation.
 Phase 2: General page layout
 ----------------------------
 
+Ensure that you set the `font-size` to `18px` on the `<html>` element.
+It is the `<html>` element's font size that determines the size of a
+`rem`, and we want a `rem` to be `18px`.
+
 Write CSS so that the page content is at most `700px` wide; this will
 make body text about 80 characters wide, which is about as wide as you
 want to go. Center the page content. On pages narrower than 700 pixels
@@ -155,8 +159,8 @@ easiest to achieve using `calc` and `flex-wrap`.
 
 
 
-Phase 4: The index page
------------------------
+Phase 4: The other pages
+------------------------
 
 Let's take a look at the buttons on the index page. Those should (of
 course) be centered and horizontally adjacent, with a `1rem` gap
@@ -185,6 +189,9 @@ itself to wrap by setting its `text-wrap` to `nowrap`.
 On the search page, make the actual search box as wide as it can be,
 with `.25rem` of padding inside so that search text isn't cramped.
 
+On the profile page, make the user logo appear to the right of the
+page title / metadata. Make it `5rem` wide and tall, and align it to
+the right of the main content area.
 
 
 Phase 5: Responsive layout
@@ -225,7 +232,9 @@ padding. Set the `align-items` of each label/text box combination to
 to the "text baseline", which is the imaginary line on which English
 text is written.
 
-Make the login button 50% of the width of the page, and center it.
+Make the login button 50% of the width of the page, and center it. But
+make sure that it never goes below `200px` wide, even on very narrow
+screens, like below 400 pixels.
 
 However, this won't look good if the page starts shrinking below 700px
 (try it!). So for pages less than 700px wide, instead put the label
@@ -310,7 +319,32 @@ easier.
 How you will use this
 ---------------------
 
-???
+The purpose of this assignment was to give you a lot of practice with
+flex-box, which is a general-purpose and powerful layout primitive
+used by a lot of modern websites. Lots of web pages use flex-box for
+the overall page layout and also for individual components like cards,
+forms, lists, and menus. Being able to rapidly build flex-box layouts
+will make it much easier to develop complex user interfaces.
+
+Right now, most of the "flexibility" that we are using flex-box for is
+to respond to changes in the size of the browser window (including
+because the user is using a device like a phone). But in [Assignment
+3](hw3.md), we're going to add an important extra bit of flexibility:
+adjusting the layout for different page content, like for different
+recipes or users. It's going to be especially important to handle
+optional elements, like whether or not a recipe has a photo or a user
+has a profile picture.
+
+If you do end up doing front-end development in the future, you'll
+probably also want to extend your skills by learning about [Grid
+layout][grid-mdn]. Grid layout builds on flex-box layout by allowing
+fine control of both axes, flexibly resizing your application in both
+dimensions. It's quite a bit more complex than flex-box (including
+named areas, wrapping and row templates, and so on) but it builds on a
+lot of the same primitives, namely content and whitespace,
+flexibility, and responsive layout.
+
+[grid-mdn]: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Basic_concepts_of_grid_layout
 
 
 
@@ -353,6 +387,7 @@ have completed this phase.
   within a line. Tags, but not any single tag, wrap to multiple lines.
 - Buttons and search field have the correct size, alignment, and
   whitespace.
+- Profile photo is correctly sized and placed.
 
 **Phase 5** is worth 30 points. It is graded on:
 
