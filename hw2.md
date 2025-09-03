@@ -1,7 +1,7 @@
 CS 3550 Assignment 2 (Layout)
 =============================
 
-**Status**: Draft \
+**Status**: Final \
 **Due**: Phase 1 due **5 Sep**. Phase 2--5 due **12 Sep**.
 
 In this assignment, you will use flex-box to set up the layout of our
