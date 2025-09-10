@@ -13,7 +13,7 @@ screens and devices of various sizes. Specifically you will:
 - Lay out cards and metadata rows
 - Ensure that the layout is responsive and works on mobile
 
-The assignment is due Friday, 5 September, before midnight. The
+The assignment is due Friday, 12 September, before midnight. The
 course's normal extension policy applies. Hand in your finished
 assignment by pushing it to your repository on Github.
 
