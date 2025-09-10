@@ -1,5 +1,5 @@
 CS 3550 Assignment 3 (Models and Views)
-=============================
+=======================================
 
 **Status**: Phase 1 Final, Phase 2 Draft \
 **Due**: Phase 1 due **19 Sep**. Phase 2--5 due **26 Sep**.
@@ -61,7 +61,7 @@ to the top of the file:
 Add the following lines to the bottom:
 
     def index(request):
-        return render(request, "index.html")
+        return render(request, "index.html", { })
 
 Make similar definitions for the other four pages (`recipe`, `search`,
 `profile`, and `signin`). Note that `login` is already a Django
@@ -108,3 +108,488 @@ file. (This should happen by default, thanks to the `.gitignore` file
 in the repository. If you accidentally do commit your database file,
 delete it and commit again.) You should see the Github Action turn
 green. If so, Phase 1 is done. If you do not, get help.
+
+
+
+Phase 2: Writing a model
+------------------------
+
+Open up `models.py`. Add the following line to the top:
+
+    from django.contrib.auth.models import User
+
+This imports the authentication system's `User` class, which we'll be
+using to represent Dishbook users.
+
+Define a model in this class called `Recipe`. It should contain the
+following fields with appropriate types:
+
+- A `title`, an optional `photo`, and a `description`
+- A `prep_time_minutes`, `cook_time_minutes`, and `serves` fields
+- An `author` and an optional `copied_from` field (another `Recipe`
+  which the current one was copied from)
+- An optional `featured_on` date (null for recipes that haven't been
+  featured)
+
+Then, define `Step` and `Ingredient` classes; each `Recipe` will
+contain several `Step`s which will each contain some number of
+`Ingredient`s.
+
+- A `Step` has an `order` (1 for the first step, 2 for the second,
+  etc) and a `description`
+- An `Ingredient` has an `amount`, a `unit`, and a `name`
+
+Finally, define two more classes: `Tag` and `Profile`:
+
+- A `Tag` has just a name; they're used to tag `Recipe`s
+- A `Profile` extends the `User` class and has an optional `photo` and
+  a `bio`
+
+For the `copied_from` field, pass `related_name="copies"`. For the
+photo fields, pass `upload_to="media/"`. Make sure to pass `null`,
+`blank`, `on_delete`, and `max_length` fields as appropriate.
+
+Note that Django also automatically gives every model class an `id`
+field, which we'll use a lot.
+
+When you're finished, run:
+
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+
+Now run the dummy data script, which you can find [in
+`assets`](assets/makedata.py). You can run it on your own machine by
+cloning this repository to your machine, making sure you're in the
+same directory as your `manage.py` file, and then running:
+
+    python3 path/to/assets/makedata.py
+
+The dummy data script creates one superuser account with a username
+and password of `pavpan` and four user accounts (`a`, `b`, `c`, `d`).
+Each user's password is their username. Single-letter usernames and
+passwords aren't realistic, of course, but this will make it easy for
+you to log in and out as different users.
+
+The dummy script then loads 60 recipes from [a file called
+`data.txt`](assets/data.txt) and uses your model classes to add them
+to the database. You may see exceptions when you run this script; that
+means you made a mistake in your `models.py` file, usually by naming a
+field the wrong thing. You'll need to fix it; edit your model and then run:
+
+    python3 manage.py makemigrations
+    rm db.sqlite3
+    python3 manage.py migrate
+    python3 makedata.py
+
+This deletes all existing data and reruns the script.
+
+
+
+Optional: Setting up the Django Admin
+-------------------------------------
+
+Optionally, set up the Django admin to more easily view and edit your
+data. Add the following code to the bottom of `admin.py`:
+
+    class IngredientInline(admin.TabularInline):
+        model = models.Ingredient
+        extra = 1
+    
+    class StepAdmin(admin.ModelAdmin):
+        inlines = [IngredientInline]
+    
+    class StepInline(admin.TabularInline):
+        model = models.Step
+        extra = 1
+        ordering = ['order']
+
+    
+    class RecipeAdmin(admin.ModelAdmin):
+        inlines = [StepInline]
+    
+    admin.site.register(models.Recipe, RecipeAdmin)
+    admin.site.register(models.Step, StepAdmin)
+    admin.site.register(models.Profile)
+    
+This makes `Step`s, and `Ingredient`s show up in the Django admin when
+you view a `Recipe`, and also makes `Profile` data show up.
+
+Make sure you can log in to the admin interface as `pavpan` and then
+add, remove, or edit assignments and submissions. Setting up the
+Django admin is not required but it will make debugging your other
+phases much easier.
+
+
+
+Phase 3: The index, search, and profile views
+---------------------------------------------
+
+We'll now start using the database to generate the appropriate HTML
+when a user visits a web page. We'll have five views, and all of them
+(except, currently, the `signin` view) will query data from the
+database and use it when generating HTML.
+
+Open `views.py` and add the following line to the top of the file (if
+it's not there already):
+
+    from . import models
+
+This allows your view functions (a.k.a. controllers) to use the models
+you defined.
+
+In your `search` view query the database for all recipes. Pass those
+to the template by adding them to the third argument of the `render`
+function. There's no actual "search" going on yet, we'll add that in
+[Assignment 4](hw4.md).
+
+In your `index` view, query the database for the most recent 3
+`Recipe` objects to be filtered. Pass those to the template.
+
+In your `profile` view, query the database for the `User` object with
+the appropriate username. If there are no such users, raise a 404
+error. Then query the database for all recipes authored by that user.
+Pass both the `User` and the set of `Recipe`s to the template. Don't
+call the template variable `user`, call it `author`. (Django sets
+`user` to the currently-logged-in user, which we'll need in
+[Assignment 5](hw5.md).)
+
+Now open your `search.html` template. This page should have three
+parts:
+
+1. A portion containing the page header
+2. A portion containing the search form
+3. A portion containing the "cards"
+
+Move the first portion to a `header.html` file. Move the third portion
+to a file named `cards.html`. In `search.html` replace the moved
+content with `{% include %}` tags. Do the same in `profile.html` and
+in `index.html`. That is, all three HTML files should `{% include %}`
+the same `header.html` and `cards.html` files instead of duplicating
+content.
+
+In `header.html`, make the `<title>` element contents a variable, and
+pass different values for that variable from the index, search, and
+profile pages. On the index page use "Welcome" for the title, on the
+search page use "Search", and on the profile page use the user's full
+name, which you can get with `author.get_full_name`.
+
+In `cards.html`, we'll want to generate multiple cards based on a
+variable containing a set of `Recipe`s. Pass the appropriate set of
+`Recipe`s from the index, search, and profile pages. Use a `{% for %}`
+loop to loop over the set; use `recipe` for the loop variable. In each
+loop iteration, output one card. Make sure:
+
+- The card's heading is `recipe.title`
+- The heading links to `/recipe/N` where N is `recipe.id`
+- Only output an `<img>` tag for the recipe photo if the recipe in
+  fact has a photo
+- The photo's `src` should be `/recipe/N/photo`, where N is again
+  `recipe.id`. Its `alt` text should read "Photo of X", where X is
+  `recipe.title`.
+
+For the list of tags inside each card, loop through `recipe.tags.all`
+and generate one tag in each loop iteration. Use the tag's name as the
+text and link the tag to `/s`.
+
+Make sure you correctly close all `for` loops and `if` statements.
+Carefully read through all of your HTML---in the `search.html`,
+`index.html`, and `profile.html` templates, as well as in the
+`header.html` and `cards.html` sub-templates---and make sure you've
+correctly used variables everywhere where you're supposed to. (In
+`header.html` you won't use variables for the currently-logged-in user
+yet, we'll do that in [Assignment 5](hw5.md).)
+
+Once you're done you should be able to go to:
+
+- http://localhost:8000/
+- http://localhost:8000/s
+- http://localhost:8000/profile/b
+
+The cards should look like the screenshots in [Assignment 2](hw2.md),
+except that photos won't work yet, they'll show up as little "broken
+image" placeholders. (We'll fix that in [Assignment 5](hw5.md).) If
+you log into the Django admin and create, delete, or modify `Recipe`
+objects, you should see the generated pages change.
+
+
+
+Phase 4: The recipe and profile view
+------------------------------------
+
+The recipe and profile views are more complex than the card views.
+
+In `profile.html`, usee the `author` variable for author information,
+including:
+
+- The author's name
+- How long since they joined (a Django `User` has a `date_joined`
+ field; use the `timesince` filter)
+- How many recipes they've authored (use the `length` filter on the set of
+  `Recipe`s; make sure to use either "Author of 1 recipe" or "Author of
+  3 recipes", using `pluralize` to add the "s" in "recipes")
+- The user bio; use the `urlize` and `linebreaks` filters to
+  automatically insert `<a>` and `<p>` tags.
+- The user's profile photo (use a `src` of `/profile/UU/photo`, where
+  UU is their username, and an `alt` of `FF's profile photo`, where FF
+  is their full name). If the user doesn't have a profile photo, don't
+  generate any HTML for the profile photo at all.
+
+Don't forget that the bio and profile photo are part of the `Profile`
+object, not the `User` object.
+
+Modify the `recipe` function to retrieve the correct `Recipe` object
+using the `recipe_id` passed as an argument. Pass that `Recipe` object
+to the template. In the template, include `header.html`, and pass the
+`title` of the `Recipe` object for the page title.
+
+Also use fields of the `Recipe` for:
+
+- The page heading
+- The recipe photo (see Phase 3 for the appropriate `src` and `alt`
+- The recipe prep, cook, and total time, and its yield. For the total
+  time, you'll need to add the prep and cook times. It's best to do
+  this by defining a method on `Recipe`s.
+- The recipe description; pass this through the `urlize` and
+  `linebreaks` filters to automatically insert `<a>` and `<p>` tags
+
+Next, let's work on the metadata section that's just under the page
+heading. Depending on the recipe, there should be up to five separate
+pieces of metadata:
+
+- The text "By XX", where XX is the author's full name and links to
+  the author's profile page. Every recipe should have this.
+- If the recipe is copied from another recipe, the text "Based on XX's
+  YY", where YY is the name of the original recipe, XX is that
+  recipe's author, and where the text "XX YY" links to that recipe's
+  recipe page. The "Funeral Potatoes with Paremesan", for example, are
+  "By Cathy Colander" but are "Based on Ben Braiser's Funeral
+  Potatoes".
+- If the recipe has copies, the text "Z variations", where Z is the
+  number of copies. The whole text should link to the search page.
+  You'll probably need to compute Z in the controller and pass it to
+  the template as another variable. For example, Ben Braiser's Funeral
+  Potatoes should have 3 variations.
+- If the recipe was ever featured, the text "Featured on MY", where
+  MY is the recipe's featured data in `F Y` format.
+- The recipe's tags; it should say "Tags: #A #B #C" where A, B, C, and
+  so on are all tags. Generate the list of tags with a `{% for %}`
+  loop, just like in `cards.html`, and link and title each tag correctly.
+  
+Make sure the tags are sorted in alphabetical order. The easiest way
+to do this is to add a `sorted_tags` method to the `Recipe` class that
+does a query with an `order_by` clause. Go back to the `cards.html`
+template and make it output the tags in order as well.
+
+
+Phase 5: Steps and ingredients
+------------------------------
+  
+The final thing we need to work on are the steps and ingredients
+lists.
+
+For the steps, use a `{% for %}` loop to output each step's
+description.
+
+The ingredients will be harder. We want to:
+
+- Go through all the `Step`s in the `Recipe`, in order
+- Collect all the `Ingredient`s across all those `Step`s, in order (so
+  that `Ingredient`s used by earlier `Step`s show up earlier)
+- Add up the amounts across steps
+- Except if those amounts have different units then we add up separate
+  units separately
+  
+For example, consider the following three steps:
+
+> 1. Combine dry ingredients of flour, baking powder, and salt, and mix.
+>    - 1 teaspoon salt
+>    - 2.5 cup all-purpose flour
+>    - 1 tablespoon baking powder
+> 2. Add milk and knead for 15 minutes
+>    - 1 cup milk
+> 3. Cook beef filling: sauté onions, add ground beef, and then add
+>    salt and flour. Add a half-cup of water.
+>    - 1 cup chopped onions
+>    - 1 pound ground beef
+>    - 0.5 teaspoon salt
+>    - 1 teaspoon all-purpose flour
+>    - 0.5 cup water
+
+The list of ingredients we want is:
+
+- 1.5 teaspoon salt
+- 2.5 cup and 1 teaspoon all-purpose flour
+- 1 tablespoon baking powder
+- 1 cup milk
+- 1 cup chopped onions
+- 1 pound ground beef
+- 0.5 cup water
+
+Note that salt and flour show up in two steps, but each still get one
+entry in the list of ingredients. Their position is determined by
+the first step they appear in. (If two ingredients appear in the same
+step, their relative order doesn't matter.)
+
+Both times salt appears, it has the same unit (teaspoon) so the two
+amounts (1 teaspoon and 0.5 teaspoon) are added. Flour, on the other
+hand, appears with two different units (cup and teaspoon) so in the
+ingredients list we just say "2.5 cup and 1 teaspoon". The order of
+the different units doesn't matter. If you had three units, you'd
+write "2.5 cup and 1 tablespoon and 2 teaspoon".
+
+It's up to you how you achieve this ingredients list, but you'll
+definitely want to go through all the `Step`s and `Ingredient`s, use
+those to build some kind of data structure, and pass that data
+structure to the template to actually output the ingredients list.
+Python hash tables (called "dictionaries") are sorted by insertion
+order. Make sure to go through the `Step`s in the right order. When
+generating the ingredients list in the template, you might want to use
+the `forloop.last` variable to put "and" appropriately between
+different units. When printing the amount, use the `floatformat:-2`
+filter; the "-2" means "up to 2" digits. If the unit is `"ct"`, don't
+print the unit; we want to print "2 onion" not "2 ct onion".
+
+
+
+Write a cover sheet
+-------------------
+
+Run your server and view each page on your website in your browser.
+Every single page should now be generated from a template, so you
+should be able to click on different recipes and user names to browser
+various recipe and profile pages. All of the links should work, except
+that photos won't show up.
+
+If you find any problems, use the browser developer tools to
+understand what HTML got generated, and then work backwards from there
+to figure out what went wrong in your code. Be careful with typos in
+templates. You can use `print(...)` statements in your controller to
+help you debug.
+
+Once you are sure everything works correctly, copy-and-paste the
+following text into a new empty text file called "HW3.md":
+
+```
+Homework 3 Cover Sheet
+----------------------
+
+In this assignment, I completed:
+
+- [ ] Phase 1
+- [ ] Phase 2
+- [ ] Phase 3
+- [ ] Phase 4
+- [ ] Phase 5
+
+I discussed this assignment with:
+
+- ...
+- ...
+- ...
+
+[ ] I solemnly swear that I wrote every line of code submitted as part
+of this assignment (except that auto-generated by Django).
+
+The most interesting thing I learned in this assignment was ...
+
+The hardest thing in this assignment was ...
+```
+
+In the first list, replace `[ ]` with `[x]` for each phase of the
+assignment you completed.
+
+In the second list, replace the `...`s with the name of your partner
+as well as any other person (student, friend, family, online stranger)
+that you discussed this assignment with.
+
+In the oath below that, check the box. Recall that, while you may
+discuss the assignment in broad strokes, you must write every line of
+code submitted by you, as stated in the oath below this list. This
+includes the use of AI tools such as ChatGPT.
+
+In the last two paragraphs, replace the `...` with the most
+interesting and the most difficult aspect of this assignment. Don't
+just make them a single sentence; the instructors use your answers to
+make these assignments more interesting and easier.
+
+
+
+How you will use this
+---------------------
+
+Web applications have backends just like this one, though typically
+with many more model classes, views, and actions. However, the core
+ideas, including models, views, and controllers, as well as concepts
+like queries and templates, are the same, even in frameworks other
+than Django and languages other than Python.
+
+One thing we did not focus on in this assignment is performance. If
+this was a widely-used recipe site, performance would be a problem,
+and it would be important to add `select_related` and
+`prefetch_related` to queries to reduce the number of times our
+application hits the database. Performance is a big focus in CS 4550
+Web Software Development II.
+
+Grading Rubric
+--------------
+
+This assignment is worth 100 points. The different phases are worth
+different weights:
+
+**Phase 1** is worth 5 points. It is graded on:
+
+- Your web server must start up without error
+- Your web server must serve all the main URLs
+- Your web server must continue to serve all static files, including
+  the favicon, the CSS file, and the image on the assignment page.
+  
+If you pass all auto-tests up to and including "Check that `/login/`
+exists", then you have completed this phase.
+
+**Phase 2** is worth 30 points. It is graded on:
+
+- You must define all of the necessary classes and fields.
+- The correct field type should be used for each field.
+- All fields must have the correct lengths, nullness, and blank
+  settings, and fields with defaults should have reasonable defaults.
+- Foreign key fields should have reasonable `on_delete` behaviors.
+
+**Phase 3** is worth 15 points. It is graded on:
+
+- The cards in the search, index, and profile views must be
+  dynamically generated.
+- The correct recipe data is read from the database in each case
+- All cards have the correct HTML with the correct data
+- All cards use a shared `cards.html` template and all pages use a
+  shared `header.html` template
+- All included templates are passed the correct data
+- All the links work, though photos won't show up
+
+**Phase 4** is worth 20 points. It is graded on:
+
+- The recipe and profile views are dynamically generated.
+- The correct data is dynamically generated in each part of the
+  template
+- The correct filters are used for all dynamically generated text
+- Optional metadata is only shown when it's supposed to be shown
+- Lists of tags always show the tags sorted
+- All the links work, though photos won't show up
+
+**Phase 5** is worth 25 points. It is graded on:
+
+- Steps show up in order
+- Ingredients show up in the right order
+- In the ingredients list, amounts of the same unit are summed
+- In the ingredients list, amounts of different units are not summed
+- The amounts and units of each ingredient are shown correctly
+
+**Cover Sheet** is worth 5 points. It is graded on:
+
+- Cover sheet is formatted correctly.
+- All questions on the cover sheet have coherent answers.
+
+Note that if your cover sheet does not list all people you discussed
+the assignment with, or misrepresents others' work as your own, that
+is academic misconduct and can result in severe sanctions beyond the 5
+points the cover sheet is worth. In the most severe cases, the
+sanction for academic misconduct is failing this course.
