@@ -214,8 +214,8 @@ even as you resize the screen.
 However, if the screen width is `500px` or narrower, the sidebars will
 get too narrow (try it!). So add CSS that does away with sidebars when
 the page is too narrow. Without sidebars, the order of page elements
-should be photo & metadata, description, ingredients, and then steps.
-There should be a `2rem` gap between each.
+should be photo & times/yield, description, ingredients, and then
+steps. There should be a `2rem` gap between each.
 
 Also, for narow screens, the extra padding around the edges of the
 screen wastes space. Make that padding disappear below 500 pxiels.
