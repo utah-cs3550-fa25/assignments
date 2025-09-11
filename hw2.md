@@ -149,13 +149,14 @@ Give the list of steps a left-padding of `1em` to line up the step
 numbers with the edge of the "Steps" label. By default the numbers
 start about `1em` to the left of the left edge of each `<li>` tag.
 
-Make the photo on the recipe page no wider than the sidebar. Add
-`.5rem` of whitespace below it. Now focus on the Prep/Cook/Total/Yield
-information below the photo. Each "Label: value" should be on one row,
-with `.5rem` gap between them and `.25rem` gap between rows. The label
-should always take up a quarter of the remaining space, while the
-label takes up the other three quarters. This effect is probably
-easiest to achieve using `calc` and `flex-wrap`.
+Make the photo on the recipe page no wider than its parent element.
+Add `.5rem` of whitespace below it. Now focus on the
+Prep/Cook/Total/Yield information below the photo. Each "Label: value"
+should be on one row, with `.5rem` gap between them and `.25rem` gap
+between rows. The label should always take up a quarter of the
+remaining space, while the label takes up the other three quarters.
+This effect is probably easiest to achieve using `calc` and
+`flex-wrap`.
 
 
 
