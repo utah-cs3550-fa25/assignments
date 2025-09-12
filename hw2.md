@@ -172,8 +172,8 @@ Next, let's work on the "card" layout that we use on the index page,
 and also on the search and profile pages.
 
 The cards go in a grid, with three cards per row and `1rem` gaps in
-between and also `1rem` gaps along the left and right (but not top and
-bottom) edges. Inside each card, there should be a `.5rem` gap between
+between and also `1rem` gaps along the top and bottom (but not left and
+right) edges. Inside each card, there should be a `.5rem` gap between
 the card edge and the content. The photo on the card (if any) should
 be no wider than the card.
 
