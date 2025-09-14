@@ -380,6 +380,9 @@ to do this is to add a `sorted_tags` method to the `Recipe` class that
 does a query with an `order_by` clause. Go back to the `cards.html`
 template and make it output the tags in order as well.
 
+Fix up any remaining links, across all pages, to point to the new
+URLs. All links should work (again, except for photos).
+
 
 Phase 5: Steps and ingredients
 ------------------------------
