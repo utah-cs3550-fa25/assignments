@@ -13,7 +13,16 @@ except:
 import re, hashlib
 from django.utils import timezone
 from django.core.files.base import File
-from dishbook.models import User, Recipe, Step, Ingredient, Tag
+from dishbook.models import User, Recipe, Step, Ingredient, Tag, Profile
+
+def asset(name, mode="r"):
+    file_dir = os.path.dirname(__file__)
+    photo_path = os.path.join(file_dir, name)
+    if os.path.exists(photo_path) and os.path.isfile(photo_path):
+        return open(photo_path, mode)
+    else:
+        print(f"Could not find `{name}`; make sure you are running this correctly.")
+        sys.exit(1)
 
 def check_has_data():
     return User.objects.all().count() or \
@@ -44,6 +53,28 @@ def create_users():
         "d", "d@cs.utah.edu", "d",
         first_name="Dan", last_name="Doughkneeder",
     )
+
+    Profile.objects.create(user=u1)
+    Profile.objects.create(user=u2)
+    Profile.objects.create(user=u3)
+    Profile.objects.create(user=u4)
+
+    with asset("ben-braiser.png", "rb") as f:
+        u2.profile.photo.save("ben-braiser.png", File(f), save=True)
+
+    u2.profile.bio = """
+    I'm a home cook who loves bold flavors and simple techniques. Most of
+    my recipes come from weeknight dinners, backyard grilling, and a few
+    kitchen experiments that turned out better than expected. When I'm not
+    cooking, I'm usually testing new spice blends or perfecting something
+    in my cast iron."""
+    u2.profile.save()
+
+    u3.profile.bio = """
+    Passionate home cook who loves experimenting with family recipes and
+    fresh seasonal ingredients. Always excited to share new dishes, learn
+    from others, and swap kitchen tips."""
+    u3.profile.save()
 
     return u1, u2, u3, u4
 
@@ -87,13 +118,8 @@ def parse_recipe(lines, author):
     ])
 
     if "photo" in metadata:
-        file_dir = os.path.dirname(__file__)
-        photo_path = os.path.join(file_dir, metadata["photo"])
-        if os.path.exists(photo_path) and os.path.isfile(photo_path):
-            with open(photo_path, "rb") as f:
-                recipe.photo.save(metadata["photo"], File(f), save=True)
-        else:
-            print(f"Could not find photo `{metadata['photo']}`; make sure you are running this correctly.")
+        with asset(metadata["photo"], "rb") as f:
+            recipe.photo.save(metadata["photo"], File(f), save=True)
     
     # Default is_public based on title hash
     #h = hashlib.md5(title.encode('utf-8')).hexdigest()
@@ -147,15 +173,8 @@ def parse_recipe(lines, author):
     return recipe
 
 def load_file(file_name):
-    file_dir = os.path.dirname(__file__)
-    data_path = os.path.join(file_dir, file_name)
-
-    if os.path.exists(data_path) and os.path.isfile(data_path):
-        with open(data_path, 'r') as f:
-            return re.split(r'(?m)^(?=#\s)', f.read())
-    else:
-        print("""Cannot find data.txt; make sure to run makedata.py as instructed""")
-        exit(1)
+    with asset(file_path, 'r') as f:
+        return re.split(r'(?m)^(?=#\s)', f.read())
 
 def parse_file(blocks, authors):
     """

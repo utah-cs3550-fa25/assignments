@@ -1,13 +1,13 @@
 CS 3550 Assignment 3 (Models and Views)
 =======================================
 
-**Status**: Phase 1 Final, Phase 2 Draft \
+**Status**: Final \
 **Due**: Phase 1 due **19 Sep**. Phase 2--5 due **26 Sep**.
 
 In this assignment, you write the back-end for the web pages you
 developed in [Assignments 1](hw1.md) [and 2](hw2.md). That back-end
-will automatically generate all web pages from a database, which we'll
-initialize with dummy data. Specifically, you will:
+will generate web pages using a database, which we'll initialize with
+dummy data. Specifically, you will:
 
 - Create Django models for the recipe website data
 - Query those models for the data that goes on each web page
@@ -118,8 +118,8 @@ Open up `models.py`. Add the following line to the top:
 
     from django.contrib.auth.models import User
 
-This imports the authentication system's `User` class, which we'll be
-using to represent Dishbook users.
+This imports the Django authentication system's `User` class, which
+we'll be using for Dishbook.
 
 Define a model in this class called `Recipe`. It should contain the
 following fields with appropriate types:
@@ -139,9 +139,11 @@ contain several `Step`s which will each contain some number of
   etc) and a `description`
 - An `Ingredient` has an `amount`, a `unit`, and a `name`
 
-Finally, define two more classes: `Tag` and `Profile`:
+Finally, define two more classes: `Tag` and `Profile`.
 
-- A `Tag` has just a name; they're used to tag `Recipe`s
+- A `Tag` is just a `name`. Add a `tags` field to `Recipe`; a recipe
+  has any number of tags, and a tag can be used on any number of
+  recipes.
 - A `Profile` extends the `User` class and has an optional `photo` and
   a `bio`
 
@@ -181,7 +183,9 @@ field the wrong thing. You'll need to fix it; edit your model and then run:
     python3 manage.py migrate
     python3 makedata.py
 
-This deletes all existing data and reruns the script.
+This deletes all existing data and reruns the script. Make sure to
+commit the contents of your `dishbook/migrations/` folder. Log into
+Github and make sure you see it there.
 
 
 
@@ -243,7 +247,7 @@ function. There's no actual "search" going on yet, we'll add that in
 [Assignment 4](hw4.md).
 
 In your `index` view, query the database for the most recent 3
-`Recipe` objects to be filtered. Pass those to the template.
+`Recipe` objects to be featured. Pass those to the template.
 
 In your `profile` view, query the database for the `User` object with
 the appropriate username. If there are no such users, raise a 404
@@ -256,40 +260,45 @@ call the template variable `user`, call it `author`. (Django sets
 Now open your `search.html` template. This page should have three
 parts:
 
-1. A portion containing the page header
-2. A portion containing the search form
-3. A portion containing the "cards"
+1. A part containing the page header
+2. A part containing the search form
+3. A part containing the "cards"
 
-Move the first portion to a `header.html` file. Move the third portion
+Move the first part to a `header.html` file. Move the third part
 to a file named `cards.html`. In `search.html` replace the moved
 content with `{% include %}` tags. Do the same in `profile.html` and
 in `index.html`. That is, all three HTML files should `{% include %}`
 the same `header.html` and `cards.html` files instead of duplicating
-content.
+content. The only content in `search.html`, `index.html`, and
+`profile.html` should be page-specific content: the search bar on the
+search page, the welcome text and buttons on the index page, and the
+profile information on the profile page.
 
-In `header.html`, make the `<title>` element contents a variable, and
-pass different values for that variable from the index, search, and
-profile pages. On the index page use "Welcome" for the title, on the
-search page use "Search", and on the profile page use the user's full
-name, which you can get with `author.get_full_name`.
+In `header.html`, make the content of the `<title>` element a
+variable, so it can be customized per-page. The index page title
+should be "Welcome", the search page title "Search", and the profile
+page title should be user's full name, which you can get with
+`author.get_full_name`. That's a method, but in Django templates we do
+not write the parentheses for a method call.
 
-In `cards.html`, we'll want to generate multiple cards based on a
-variable containing a set of `Recipe`s. Pass the appropriate set of
-`Recipe`s from the index, search, and profile pages. Use a `{% for %}`
-loop to loop over the set; use `recipe` for the loop variable. In each
-loop iteration, output one card. Make sure:
+In `cards.html`, we'll want to generate multiple cards, so we'll need
+a variable containing a set of `Recipe`s. Call it `recipes` and pass
+the appropriate set of `Recipe`s from the index, search, and profile
+pages. Then, in `cards.html`, use a `{% for %}` loop to loop over
+`recipes`; use `recipe` for the loop variable. In each loop iteration,
+output one card. Make sure:
 
 - The card's heading is `recipe.title`
 - The heading links to `/recipe/N` where N is `recipe.id`
-- Only output an `<img>` tag for the recipe photo if the recipe in
-  fact has a photo
+- Output an `<img>` tag for the recipe photo, but only if the recipe
+  in fact has a photo
 - The photo's `src` should be `/recipe/N/photo`, where N is again
   `recipe.id`. Its `alt` text should read "Photo of X", where X is
   `recipe.title`.
 
 For the list of tags inside each card, loop through `recipe.tags.all`
-and generate one tag in each loop iteration. Use the tag's name as the
-text and link the tag to `/s`.
+and generate one tag in each loop iteration. Each tag should link to
+`/s`.
 
 Make sure you correctly close all `for` loops and `if` statements.
 Carefully read through all of your HTML---in the `search.html`,
@@ -307,9 +316,10 @@ Once you're done you should be able to go to:
 
 The cards should look like the screenshots in [Assignment 2](hw2.md),
 except that photos won't work yet, they'll show up as little "broken
-image" placeholders. (We'll fix that in [Assignment 5](hw5.md).) If
-you log into the Django admin and create, delete, or modify `Recipe`
-objects, you should see the generated pages change.
+image" placeholders. (We'll fix that in [Assignment 5](hw5.md).) You
+should also be able to go to other profile pages. If you log into the
+Django admin and create, delete, or modify `Recipe` objects, you
+should see the generated pages change.
 
 
 
@@ -318,15 +328,16 @@ Phase 4: The recipe and profile view
 
 The recipe and profile views are more complex than the card views.
 
-In `profile.html`, usee the `author` variable for author information,
-including:
+In `profile.html`, set the profile information based on the passed-in
+`User` object, including:
 
 - The author's name
 - How long since they joined (a Django `User` has a `date_joined`
  field; use the `timesince` filter)
-- How many recipes they've authored (use the `length` filter on the set of
-  `Recipe`s; make sure to use either "Author of 1 recipe" or "Author of
-  3 recipes", using `pluralize` to add the "s" in "recipes")
+- How many recipes they've authored (use the `length` filter on the
+  set of `Recipe`s; make sure to output either "Author of 1 recipe" or
+  "Author of 3 recipe**s**", using `pluralize` to add the "s" in
+  "recipes")
 - The user bio; use the `urlize` and `linebreaks` filters to
   automatically insert `<a>` and `<p>` tags.
 - The user's profile photo (use a `src` of `/profile/UU/photo`, where
@@ -335,17 +346,18 @@ including:
   generate any HTML for the profile photo at all.
 
 Don't forget that the bio and profile photo are part of the `Profile`
-object, not the `User` object.
+object, not the `User` object. Check that every user profile looks
+good.
 
-Modify the `recipe` function to retrieve the correct `Recipe` object
-using the `recipe_id` passed as an argument. Pass that `Recipe` object
-to the template. In the template, include `header.html`, and pass the
+Modify the `recipe` view to retrieve the correct `Recipe` object using
+the `recipe_id` passed as an argument. Pass that `Recipe` object to
+the template. In the template, include `header.html`, and pass the
 `title` of the `Recipe` object for the page title.
 
 Also use fields of the `Recipe` for:
 
 - The page heading
-- The recipe photo (see Phase 3 for the appropriate `src` and `alt`
+- The recipe photo (see Phase 3 for the appropriate `src` and `alt`)
 - The recipe prep, cook, and total time, and its yield. For the total
   time, you'll need to add the prep and cook times. It's best to do
   this by defining a method on `Recipe`s.
@@ -372,8 +384,7 @@ pieces of metadata:
 - If the recipe was ever featured, the text "Featured on MY", where
   MY is the recipe's featured data in `F Y` format.
 - The recipe's tags; it should say "Tags: #A #B #C" where A, B, C, and
-  so on are all tags. Generate the list of tags with a `{% for %}`
-  loop, just like in `cards.html`, and link and title each tag correctly.
+  so on are all tags. Follow Phase 3's description of generating tags.
   
 Make sure the tags are sorted in alphabetical order. The easiest way
 to do this is to add a `sorted_tags` method to the `Recipe` class that
@@ -384,6 +395,7 @@ Fix up any remaining links, across all pages, to point to the new
 URLs. All links should work (again, except for photos).
 
 
+
 Phase 5: Steps and ingredients
 ------------------------------
   
@@ -391,7 +403,7 @@ The final thing we need to work on are the steps and ingredients
 lists.
 
 For the steps, use a `{% for %}` loop to output each step's
-description.
+description. Make sure they are in the right order.
 
 The ingredients will be harder. We want to:
 
@@ -399,7 +411,7 @@ The ingredients will be harder. We want to:
 - Collect all the `Ingredient`s across all those `Step`s, in order (so
   that `Ingredient`s used by earlier `Step`s show up earlier)
 - Add up the amounts across steps
-- Except if those amounts have different units then we add up separate
+- Except if those amounts have different units—then we add up separate
   units separately
   
 For example, consider the following three steps:
@@ -411,7 +423,7 @@ For example, consider the following three steps:
 > 2. Add milk and knead for 15 minutes
 >    - 1 cup milk
 > 3. Cook beef filling: sauté onions, add ground beef, and then add
->    salt and flour. Add a half-cup of water.
+>    salt and flour. Add a half-cup of water. Cook until thick.
 >    - 1 cup chopped onions
 >    - 1 pound ground beef
 >    - 0.5 teaspoon salt
@@ -440,17 +452,17 @@ ingredients list we just say "2.5 cup and 1 teaspoon". The order of
 the different units doesn't matter. If you had three units, you'd
 write "2.5 cup and 1 tablespoon and 2 teaspoon".
 
-It's up to you how you achieve this ingredients list, but you'll
-definitely want to go through all the `Step`s and `Ingredient`s, use
-those to build some kind of data structure, and pass that data
-structure to the template to actually output the ingredients list.
-Python hash tables (called "dictionaries") are sorted by insertion
-order. Make sure to go through the `Step`s in the right order. When
-generating the ingredients list in the template, you might want to use
-the `forloop.last` variable to put "and" appropriately between
-different units. When printing the amount, use the `floatformat:-2`
-filter; the "-2" means "up to 2" digits. If the unit is `"ct"`, don't
-print the unit; we want to print "2 onion" not "2 ct onion".
+It's up to you how you achieve this, but you'll definitely want to go
+through all the `Step`s and `Ingredient`s, use those to build some
+kind of data structure, and pass that data structure to the template
+to actually output the ingredients list. Python hash tables (called
+"dictionaries") are sorted by insertion order, so make sure to go
+through the `Step`s in the right order. When generating the
+ingredients list in the template, you might want to use the
+`forloop.last` variable to put "and" appropriately between different
+units. When printing the amount, use the `floatformat:-2` filter; the
+"-2" means "up to 2" digits. If the unit is `"ct"`, don't print the
+unit; we want to print "2 onion" not "2 ct onion".
 
 
 
