@@ -114,6 +114,12 @@ green. If so, Phase 1 is done. If you do not, get help.
 Phase 2: Writing a model
 ------------------------
 
+Install the `pillow` library for handling images:
+
+    python3 -m pip install pillow
+
+If this fails, please get help.
+
 Open up `models.py`. Add the following line to the top:
 
     from django.contrib.auth.models import User

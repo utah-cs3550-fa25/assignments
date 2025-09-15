@@ -56,7 +56,7 @@ see what looks like an error, seek help from the instructors.
 
 **Next, install Django** by running:
 
-    python3 -m pip install django
+    python3 -m pip install django pillow
 
 Check your Django version by running:
 
