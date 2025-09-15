@@ -67,7 +67,10 @@ and flex items. You should be able to use `px` and `rem` units.
 You should understand the main and cross axes of a flex container. You
 should be able to distribute white-space with the `justify-content`
 and `align-items` properties, know which is which, and the common
-values for each.
+values for each. You should know the `flex-grow` and `flex-shrink`
+properties, and how to use them. You should be able to limit growing
+and shrinking with `min`/`max` properties for `width` and `height`,
+and how to set `flex-wrap`.
 
 You should be able to explain default layout properties and what a CSS
 reset does. (You don't need to memorize the reset syntax itself.)
@@ -203,7 +206,7 @@ You should also be able to use `:valid` / `:invalid` to style HTML
 forms.
 
 Security
-========
+--------
 
 You should be able to describe simple security policies in terms
 of which users can perform which actions. You should be able to
@@ -226,7 +229,7 @@ is, and what to look for in your code to find it. You should be able
 to explain what a CVE is and who/what OWASP is.
 
 JavaScript
-==========
+----------
 
 You should be able to include JavaScript into an HTML page. You should
 know the syntax of a `<script>` tag, how to write inline JS, and what
@@ -264,7 +267,7 @@ able to use `$.ajax` as a promise with `await`. You should be know how
 to move `await` calls later in the code to enable more parallelism.
 
 Cloud Deployments
-=================
+-----------------
 
 You should be able to identify the parts of a URL: the protocol (or
 scheme), hostname (or domain), port, and path (or page). You should be
