@@ -562,7 +562,7 @@ different weights:
 - Your web server must start up without error
 - Your web server must serve all the main URLs
 - Your web server must continue to serve all static files, including
-  the favicon, the CSS file, and the image on the assignment page.
+  the CSS file, and the image on the assignment page.
   
 If you pass all auto-tests up to and including "Check that `/login/`
 exists", then you have completed this phase.
