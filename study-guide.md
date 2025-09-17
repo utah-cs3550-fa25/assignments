@@ -95,8 +95,9 @@ the most difficult skill for students.
 
 **Responsive layout**: You should be able to write `@media` rules
 using `max-width` or `min-width` predicates. You should be able to
-write responsive layouts that change from row to column or hide
-elements at various screen sizes.
+write `calc` values, like for grids. You should be able to write
+responsive layouts that change from row to column or hide elements at
+various screen sizes.
 
 Django and MVC
 --------------
@@ -118,22 +119,14 @@ be able to determine whether `CharField` or `TextField` is more
 appropriate. You should be able to use the `max_length`, `blank`,
 `null`, and `default` attributes.
 
-You should understand what a `ForeignKey` is. You should be able to
-model complex relationships using it. You should be able to choose
-appropriate `on_delete` behaviors.
+You should understand what a `ForeignKey`, a `ManyToManyField`, and a
+`OneToOneField` are. You should understand when to set `related_name`
+and `symmetrical`. You should be able to choose appropriate
+`on_delete` behaviors. You should be able to model complex
+relationships using these fields and properties.
 
 You should be able to explain migrations, when they are created, when
 they are run, and what problem they solve.
-
-**Views**: You should know how to use the `render` function to pass
-data from controllers to views. You should know the `for`, `if`,
-`with`, and `include` Django template tags and the `forloop.first`,
-`forloop.last`, `forloop.counter`, and `forloop.counter0` variables.
-You should be able to use basic template filters like `default`,
-`floatformat`, `date`, `length`.
-
-You should be able to construct nested or grouped data in controllers
-for later use in views.
 
 **Controllers**: You should know the syntax for defining URLs,
 including parameterized URLs, in `urls.py`.
@@ -155,7 +148,16 @@ You should know when queries are actually executed and which objects
 are actually loaded. You should be able to explain the "1 + N" problem
 and be able to use `select_related` to fix it.
 
-You should know the `get` and `get_object_or_404` helper function.
+**Views**: You should know how to use the `render` function to pass
+data from controllers to views. You should know the `for`, `if`,
+`with`, and `include` Django template tags and the `forloop.first`,
+`forloop.last`, `forloop.counter`, and `forloop.counter0` variables.
+You should be able to use basic template filters like `default`,
+`floatformat`, `date`, `length`.
+
+You should know the `get` and `get_object_or_404` helper function. You
+should be able to construct nested or grouped data in controllers for
+later use in views.
 
 ----------------------------------------------------------------------
 
