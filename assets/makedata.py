@@ -173,7 +173,7 @@ def parse_recipe(lines, author):
     return recipe
 
 def load_file(file_name):
-    with asset(file_path, 'r') as f:
+    with asset(file_name, 'r') as f:
         return re.split(r'(?m)^(?=#\s)', f.read())
 
 def parse_file(blocks, authors):
