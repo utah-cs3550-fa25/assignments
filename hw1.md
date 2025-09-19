@@ -363,9 +363,9 @@ Phase 5: Borders, colors, and ornamentation
 
 The page uses just a couple colors: #F7F1E8 "cream", #2E261C "cast
 iron", #A8570C "cacao", #FFF9F1 "paper", #888 "ash", #8B5E34 "oak",
-and in a few places #FFF pure white. Note that these aren't the
-standard names for these colors, just thematically appropriate names
-chosen to help you remember which is which.
+#FFFDFA "cardstock", and in a few places #FFF pure white. Note that
+these aren't the standard names for these colors, just thematically
+appropriate names chosen to help you remember which is which.
 
 Assign the appropriate text color to body text, links ("oak" normally
 and "cacao" on hover), and headings. Also use the appropriate color
