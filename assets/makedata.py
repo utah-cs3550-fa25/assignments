@@ -19,7 +19,7 @@ def asset(name, mode="r"):
     file_dir = os.path.dirname(__file__)
     photo_path = os.path.join(file_dir, name)
     if os.path.exists(photo_path) and os.path.isfile(photo_path):
-        return open(photo_path, mode)
+        return open(photo_path, mode, encoding="utf8")
     else:
         print(f"Could not find `{name}`; make sure you are running this correctly.")
         sys.exit(1)
