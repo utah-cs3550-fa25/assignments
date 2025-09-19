@@ -129,35 +129,27 @@ You should be able to explain migrations, when they are created, when
 they are run, and what problem they solve.
 
 **Controllers**: You should know the syntax for defining URLs,
-including parameterized URLs, in `urls.py`.
+including parameterized URLs, in `urls.py`. You should be able to use
+`get` or `get_object_or_404` to retrieve objects from the database,
+and `save` to create and modify them.
 
-You should be able to query, create, and save Django model objects.
-Specifically, you should know the following query operators:
-
-- `filter`, `exclude`, and `distinct`
-- `order_by`, `first`, and `last`
-- `count`, `contains`, and `exists`
-
-You should be able to combine or chain query operators to execute
-complex queries. You should be able to use to query objects by field
+You should be able to query model objects using `filter`, `exclude`,
+and `order_by`. You should be able to use to query objects by field
 (as in `author="Tom Clancy"`; by field of a related object (as in
 `author_name="Tom Clancy"`); or by property of a field (as in
-`author_name__contains="Tom"`).
+`author_name__contains="Tom"`). You should be able to traverse
+relations in both directions.
 
-You should know when queries are actually executed and which objects
-are actually loaded. You should be able to explain the "1 + N" problem
-and be able to use `select_related` to fix it.
+You should know when queries are executed, including for related
+objects. You should be able to explain and fix the "1 + N" problem
+using `select_related` or `prefetch_related`. You should be able to do
+`Min`, `Max`, `Count`, and `Sum` queries with `aggregate`.
 
-**Views**: You should know how to use the `render` function to pass
-data from controllers to views. You should know the `for`, `if`,
-`with`, and `include` Django template tags and the `forloop.first`,
-`forloop.last`, `forloop.counter`, and `forloop.counter0` variables.
-You should be able to use basic template filters like `default`,
-`floatformat`, `date`, `length`.
-
-You should know the `get` and `get_object_or_404` helper function. You
-should be able to construct nested or grouped data in controllers for
-later use in views.
+**Views**: You should be able to write simple controllers that take
+arguments, perform queries, construct data structures, and call
+`render`. You should know the `for`, `if`, `include` Django template
+tags and the `default` filter. You should know how to add model
+methods.
 
 ----------------------------------------------------------------------
 
