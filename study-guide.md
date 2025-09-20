@@ -103,8 +103,8 @@ Django and MVC
 --------------
 
 You should be able to define clients, servers, the client-server
-architecture, requests, and responses. You should be able to define
-the roles of the back-end and the front-end.
+architecture, requests, and responses, and give examples. You should
+be able to define the roles of the back-end and the front-end.
 
 You should be able to explain the roles of the model, view,
 controller, and router in a MVC-style web application. You should also
