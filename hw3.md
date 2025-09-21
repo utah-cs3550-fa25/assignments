@@ -201,6 +201,8 @@ Optional: Setting up the Django Admin
 Optionally, set up the Django admin to more easily view and edit your
 data. Add the following code to the bottom of `admin.py`:
 
+    from . import models
+
     class IngredientInline(admin.TabularInline):
         model = models.Ingredient
         extra = 1
