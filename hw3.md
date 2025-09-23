@@ -151,7 +151,7 @@ Finally, define two more classes: `Tag` and `Profile`.
   has any number of tags, and a tag can be used on any number of
   recipes.
 - A `Profile` extends the `User` class and has an optional `photo` and
-  a `bio`
+  an optional `bio`
 
 For the `copied_from` field, pass `related_name="copies"`. For the
 photo fields, pass `upload_to="media/"`. Make sure to pass `null`,
