@@ -154,7 +154,7 @@ Add `.5rem` of whitespace below it. Now focus on the
 Prep/Cook/Total/Yield information below the photo. Each "Label: value"
 should be on one row, with `.5rem` gap between them and `.25rem` gap
 between rows. The label should always take up a quarter of the
-remaining space, while the label takes up the other three quarters.
+remaining space, while the value takes up the other three quarters.
 This effect is probably easiest to achieve using `calc` and
 `flex-wrap`.
 

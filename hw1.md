@@ -129,6 +129,7 @@ may have been created for you. Add the following contents, or check
 that they're already there:
 
     uploads/*
+    media/*
     db.sqlite3
     *.pyc
     .DS_Store
