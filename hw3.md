@@ -150,7 +150,7 @@ Finally, define two more classes: `Tag` and `Profile`.
 - A `Tag` is just a `name`. Add a `tags` field to `Recipe`; a recipe
   has any number of tags, and a tag can be used on any number of
   recipes.
-- A `Profile` extends the `User` class and has an optional `photo` and
+- A `Profile` for every `User` class has an optional `photo` and
   an optional `bio`
 
 For the `copied_from` field, pass `related_name="copies"`. For the
