@@ -189,9 +189,20 @@ field the wrong thing. You'll need to fix it; edit your model and then run:
     python3 manage.py migrate
     python3 makedata.py
 
-This deletes all existing data and reruns the script. Make sure to
-commit the contents of your `dishbook/migrations/` folder. Log into
-Github and make sure you see it there.
+This deletes all existing data and reruns the script. 
+
+If the above doesn't work (if you tried to subclass a model for example), 
+you may also try more of a complete reset by deleting all `.py` files 
+inside your migrations folder (except `__init__.py`- don't delete that one!), 
+then running:
+
+    rm db.sqlite3
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    python3 makedata.py
+
+Once you get everything working, make sure to commit the contents of your 
+`dishbook/migrations/` folder. Log intoGithub and make sure you see it there.
 
 
 
