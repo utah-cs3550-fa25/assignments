@@ -226,8 +226,9 @@ data. Add the following code to the bottom of `admin.py`:
 This makes `Step`s, and `Ingredient`s show up in the Django admin when
 you view a `Recipe`, and also makes `Profile` data show up.
 
-Make sure you can log in to the admin interface as `pavpan` and then
-add, remove, or edit assignments and submissions. Setting up the
+Make sure you can log in to the admin interface as `pavpan` 
+(by running your server and pointing your browser to http://localhost:8000/admin/) 
+and then add, remove, or edit data. Setting up the
 Django admin is not required but it will make debugging your other
 phases much easier.
 
