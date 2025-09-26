@@ -167,7 +167,7 @@ When you're finished, run:
 
 Now run the dummy data script, which you can find [in
 `assets`](assets/makedata.py). You can run it on your own machine by
-cloning this repository to your machine, making sure you're in the
+__cloning this repository__ to your machine, making sure you're in the
 same directory as your `manage.py` file, and then running:
 
     python3 path/to/assets/makedata.py
