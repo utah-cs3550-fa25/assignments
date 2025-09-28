@@ -134,6 +134,8 @@ following fields with appropriate types:
 - A `prep_time_minutes`, `cook_time_minutes`, and `serves` fields
 - An `author` and an optional `copied_from` field (another `Recipe`
   which the current one was copied from)
+  - We are treating this site like a kind of shareable but personal cookbook, 
+  so if a user deletes their account we should delete their recipes.
 - An optional `featured_on` date (null for recipes that haven't been
   featured)
 
@@ -143,7 +145,8 @@ contain several `Step`s which will each contain some number of
 
 - A `Step` has an `order` (1 for the first step, 2 for the second,
   etc) and a `description`
-- An `Ingredient` has an `amount`, a `unit`, and a `name`
+- An `Ingredient` has an `amount`, a `unit`, and a `name`. The `amount` 
+can be a decimal value. 
 
 Finally, define two more classes: `Tag` and `Profile`.
 
@@ -167,7 +170,7 @@ When you're finished, run:
 
 Now run the dummy data script, which you can find [in
 `assets`](assets/makedata.py). You can run it on your own machine by
-cloning this repository to your machine, making sure you're in the
+__cloning this repository__ to your machine, making sure you're in the
 same directory as your `manage.py` file, and then running:
 
     python3 path/to/assets/makedata.py
@@ -189,9 +192,20 @@ field the wrong thing. You'll need to fix it; edit your model and then run:
     python3 manage.py migrate
     python3 makedata.py
 
-This deletes all existing data and reruns the script. Make sure to
-commit the contents of your `dishbook/migrations/` folder. Log into
-Github and make sure you see it there.
+This deletes all existing data and reruns the script. 
+
+If the above doesn't work (if you tried to subclass a model for example), 
+you may also try more of a complete reset by deleting all `.py` files 
+inside your migrations folder (except `__init__.py`- don't delete that one!), 
+then running:
+
+    rm db.sqlite3
+    python3 manage.py makemigrations
+    python3 manage.py migrate
+    python3 makedata.py
+
+Once you get everything working, make sure to commit the contents of your 
+`dishbook/migrations/` folder. Log intoGithub and make sure you see it there.
 
 
 
@@ -226,8 +240,9 @@ data. Add the following code to the bottom of `admin.py`:
 This makes `Step`s, and `Ingredient`s show up in the Django admin when
 you view a `Recipe`, and also makes `Profile` data show up.
 
-Make sure you can log in to the admin interface as `pavpan` and then
-add, remove, or edit assignments and submissions. Setting up the
+Make sure you can log in to the admin interface as `pavpan` 
+(by running your server and pointing your browser to http://localhost:8000/admin/) 
+and then add, remove, or edit data. Setting up the
 Django admin is not required but it will make debugging your other
 phases much easier.
 
