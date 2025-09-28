@@ -134,6 +134,8 @@ following fields with appropriate types:
 - A `prep_time_minutes`, `cook_time_minutes`, and `serves` fields
 - An `author` and an optional `copied_from` field (another `Recipe`
   which the current one was copied from)
+  - We are treating this site like a kind of shareable but personal cookbook, 
+  so if a user deletes their account we should delete their recipes.
 - An optional `featured_on` date (null for recipes that haven't been
   featured)
 
@@ -143,7 +145,8 @@ contain several `Step`s which will each contain some number of
 
 - A `Step` has an `order` (1 for the first step, 2 for the second,
   etc) and a `description`
-- An `Ingredient` has an `amount`, a `unit`, and a `name`
+- An `Ingredient` has an `amount`, a `unit`, and a `name`. The `amount` 
+can be a decimal value. 
 
 Finally, define two more classes: `Tag` and `Profile`.
 
