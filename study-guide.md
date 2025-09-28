@@ -136,8 +136,8 @@ and `save` to create and modify them.
 You should be able to query model objects using `filter`, `exclude`,
 and `order_by`. You should be able to use to query objects by field
 (as in `author="Tom Clancy"`; by field of a related object (as in
-`author_name="Tom Clancy"`); or by property of a field (as in
-`author_name__contains="Tom"`). You should be able to traverse
+`author__name="Tom Clancy"`); or by property of a field (as in
+`author__name__contains="Tom"`). You should be able to traverse
 relations in both directions.
 
 You should know when queries are executed, including for related
