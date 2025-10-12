@@ -162,19 +162,16 @@ line may be changed before fall break.
 Forms
 -----
 
-**Forms** You should know how to make a valid HTML form, including the
-`<form>`, `<label>`, `<input>`, `<button>`, and `<output>` elements.
-You should know what the `action`, `method`, and `enctype` parameters
-do on forms, and be able explain the difference between the `get` and
-`post` values for `method` and choose the right one for various forms.
-(You are not expected to know what values to put for `enctype`, but
-you are expected to know in what case you need to set a non-default
-`enctype`.) You should know the `type`, `id`, `name`, `value`, and
-`disabled` attributes on input elements.
+**Forms** You should know how to make a form using the `<form>`,
+`<label>`, `<input>`, `<button>`, and `<output>` elements. You should
+know what the `action`, `method`, and `enctype` parameters do, and
+choose between `get` and `post`. (You are not expected to know what
+values to put for `enctype`, but you are expected to know in what case
+you need to set a non-default `enctype`.) You should know the `type`,
+`id`, `name`, `value`, and `disabled` attributes on input elements.
 
-For `<input>` elements, you should know the `checkbox`, `radio`,
-`file`, `image`, `date`, `time`, `text`, `number`, `email`, and `tel`
-types.
+You should know the `checkbox`, `radio`, `file`, `image`, `date`,
+`time`, `text`, `number`, `email`, and `tel` types of `<input>`.
 
 You should be able to write a Django view function (controller) that
 receives form data and saves it to the database. You should know how
@@ -182,22 +179,16 @@ to use the `request.GET`, `request.POST`, and `request.FILES`
 dictionaries to access form data. You should be able to describe the
 risks associated with file uploads.
 
-**Validation**: You should know how to catch `DoesNotExist` errors
-from queries and return `Http404` errors. You should know how to
-catch `ValueError`s from parsing numbers. You should be able to write
-a form handler that re-renders on failure and redirects on success,
-and where the re-rendering uses some errors data structures.
+**Validation**: You should know how to catch `DoesNotExist` and
+`ValueError`s. You should be able to write a form handler that
+re-renders on failure and redirects on success, and where the
+re-rendering uses shows errors saved in some data structure.
 
-You should be able to use the following input element attributes for
-client-side validation:
-
-- `required`
-- `min` / `max`
-- `minlength` / `maxlength`
-- `accept`
-
-You should also be able to use `:valid` / `:invalid` to style HTML
-forms.
+You should be able to explain the difference between client-side and
+server-side validation, and explain the security concerns with each.
+You should be able to use the `required`, `min`/`max`,
+`minlength`/`maxlength`, and `accept` attributes for client-side
+validation, and style invalid elements with `:valid`/`:invalid`.
 
 Security
 --------
