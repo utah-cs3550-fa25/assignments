@@ -22,7 +22,7 @@ As well as homework assignments:
   Due 5 Sep and 12 Sep.
 * [Homework 3 (Models and Views)](hw3.md) \
   Due 19 Sep and 26 Sep.
-* Homework 4 (Forms and Controllers) \
+* [Homework 4 (Forms and Controllers)](hw4.md) \
   Due 17 Oct and 24 Oct.
 * Homework 5 (Users and Permissions) \
   Due 31 Oct and 7 Nov.
