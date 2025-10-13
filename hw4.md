@@ -1,7 +1,7 @@
 CS 3550 Assignment 4 (Forms and Controllers)
 ============================================
 
-**Status**: Phase 1 final; Phase 2--5 draft \
+**Status**: Phase 1 final \
 **Due**: Phase 1 due **17 Oct**, Phase 2--5 due **24 Oct**
 
 About
@@ -24,28 +24,29 @@ Phase 1: Form submission
 
 Make a copy of your `recipe.html` template called `edit.html`. Edit
 `edit.html` and insert a `<form>` element around the entire page
-contents (not the header); it can go inside a `<main>` or similar
-element if you have one, but has to include all of the recipe content
-on the page. Give the `<form>` element an `action` of
-`/recipe/ID/edit`, where `ID` is the recipe ID, and a `method` of
-`post`. Add the line `{% csrf_token %}` somewhere inside the form.
+contents (not the site header); it can go inside a `<main>` or similar
+element if you have one, but should all of the recipe content on the
+page. Give the `<form>` element an `action` of `/recipe/ID/edit`,
+where `ID` is the recipe ID, and a `method` of `post`. Add the line
+`{% csrf_token %}` somewhere inside the form.
 
-Add an `edit_recipe` view and bind it to the URL `/recipe/ID/edit`.
-This view should render the `edit.html` template if requested with
-GET, but redirect to `/recipe/ID/` when requested with POST. You can
-import `redirect` from `django.shortcuts`. For now, it doesn't need to
-do anything else.
+Add an `edit_recipe` view and route the URL `/recipe/ID/edit` to it.
+Make the view render `edit.html` if requested with GET, but redirect
+to `/recipe/ID/` when requested with POST. You can import `redirect`
+from `django.shortcuts`.
 
-In the `edit.html` template, add a `<button>` labeled `Save`. Make
-sure this `<button>` is inside the `<form>`. In the `recipe.html`
-template, add a `<form>` element in the same place; the `<form>`
-should have an action of `/recipe/ID/edit` and a `method` of `get`,
-and should contain a single `<button>` labeled `Edit`. It should look
-like this:
+In the `edit.html` template, add a `<button>` labeled `Save` inside
+the page title (usually an `<h1>` element containing the recipe
+title). Make sure this `<button>` is inside the `<form>`. In the
+`recipe.html` template, add a `<form>` element in the same place; the
+`<form>` should have an action of `/recipe/ID/edit` and a `method` of
+`get`, and should contain a single `<button>` labeled `Edit`. It
+should look like this:
 
 <img src="hw4/recipe-hdr.png" alt="A screenshot of the Edit button on the recipe page" />
 <img src="hw4/edit-hdr.png" alt="A screenshot of the Save button on the edit page" />
 
+Your button won't be right-aligned yet; you'll do that in Phase 2.
 Make sure that clicking the `Edit` button shows the edit page and
 clicking the `Save` button redirects back to the recipe page.
 
@@ -57,10 +58,11 @@ help.
 Phase 2: The edit page
 ----------------------
 
-In this phase, you will make the edit page work. Go through the
-`edit.html` template, and replace most recipe fields with input
-elements. Specifically, add input elements for:
+In this phase, you will finish the `edit.html` template HTML and CSS.
+Replace the recipe fields in `edit.html` with input elements.
+Specifically, add elements for:
 
+- The recipe title. This should be a one-line text input.
 - The prep time, cook time, total time, and servings. All four should
   be number fields; the total time field should be read only.
 - The recipe description. This should be a multi-line text input with
@@ -73,37 +75,40 @@ elements. Specifically, add input elements for:
 - Each step should have a bulleted list below the step containing all
   of the ingredients for that step. Each ingredient should consist of
   three fields: an amount, a unit, and the ingredient name. The amount
-  should be a number, while the other two should be short text inputs.
+  should be a number, while the other two should be single-line text
+  inputs.
+
+Match the HTML structure of your `recipe.html` page where possible;
+the `edit.html` should have the same layout as `recipe.html`.
 
 Make sure to use the appropriate element and `type` for each field.
-Use the `readonly` property to make a field read only. Make sure to
-add appropriate `<label>` elements, making them `visually-hidden` if
-necessary. `<textarea>` elements can have labels the same as `<input>`
-elements. Match the HTML structure of your `recipe.html` page as much
-as possible; the `edit.html` should have the same layout as
-`recipe.html`.
+Use the `readonly` property to make a field read only. Add `<label>`
+elements for all input fields; some are `visually-hidden`, match the
+screenshot below. You might want to peek at the Phase 3 instructions
+before you pick `id`s for each label/input pair.
 
 Style the page. In the page title, make the `Edit`/`Save` button
 appear in the top right corner of the page. Make each `<textarea>`
 element take up the full width of its container. Use the `resize`
-property to make it resizable only vertically. For the step
-descriptions, set `vertical-align: top` on any `<textarea>`s so that
-the step number appears in the right place.
+property to make it resizable only vertically. Set `vertical-align` to
+`top` on step descriptions so that the step number appears in the
+right place. Make the recipe title input box have really big text in
+the correct font (`Playwrite US Trad`).
 
 You can change the size of various input elements using the `size`
-field. Choose reasonable values. Unfortunately, `size` doesn't work by
-default on `type=number` fields, but you can add the following CSS to
-fix this, at least on Chrome-like browsers:
+attribute. Choose reasonable values, consulting the screenshot below.
+By default, `size` doesn't apply number inputs, but you can fix that,
+at least on Chrome-like browsers, with this CSS:
 
-    input[type=number][size] { width: calc(attr(size type(<number>)) * 1ch + 2rem); }
+    input[type=number][size] { width: calc(attr(size number) * 1ch + 2rem); }
 
 Indent the bulleted list of ingredients below each step. Add `.25rem`
 of padding between each ingredient vertically, and add `1rem` of
 padding between steps.
 
-The final `edit.html` page should look like this:
+The edit page should now look like this:
 
-<img src="hw4/edit.png" alt="A screenshot of the edit page" />
+<img src="hw4/edit-p2.png" alt="A screenshot of the edit page after Phase 2" />
 
 Note that, as you edit these fields, some parts of the page which
 depend on those fields—like the total time or the ingredients
@@ -114,66 +119,51 @@ list—will not auto-update. That's expected.
 Phase 3: Saving Recipes
 -----------------------
 
-Modify your `edit_recipe` view to save recipes when the `Save` button
-is clicked. Specifically, save recipes when the `edit_recipe`
-controller sees a `POST` request. For `GET` requests, just render the
-`edit.html` page.
+In this phase, you will modify `edit_recipe` to save recipes when it
+receives a `POST` request. For `GET` requests, the controller will
+continue to render the `edit.html` page.
 
-Specifically, update the prep time, cook time, serving count, recipe
-description, step descriptions, and ingredients name/unit/amounts.
+Modify `edit.html` to give `name`s to every editable field. For steps
+and ingredients, embed the step/ingredient ID into the `name`.
 
-To do so, you will need to choose appropriate `name` attributes for
-every editable field. For steps and ingredients, we recommend
-embedding the step/ingredient ID into the `name` attribute. Then, in
-the controller, you can iterate through `request.POST`, fetch the
-appropriate `Step` or `Ingredient` object, and update its field.
+Inside the `edit_recipe` controller, update the prep time, cook time,
+serving count, recipe description, step descriptions, and ingredients
+name/unit/amounts when a `POST` request is received. To update steps
+and ingredients, iterate through all of the current `Recipe`'s
+existing `Step`s/`Ingredient`s.
 
-Handling errors is part of the next Phase, so you can delay doing that
-for now.
+Handling errors is the next Phase, so you don't need to do that yet.
 
 Every time you update a field on an object, add that object to a list
 (perhaps call the list `updated_objects`). Once you're done processing
 the form submission, call `save` on *every single object* in that
 list. We need the list because calling `save` on just the `Recipe`
-object *will not* `save` its `Ingredient`s or `Step`s.
+object *will not* `save` its `Ingredient`s or `Step`s. (We're saving
+all `Step`s and `Ingredient`s to a list, instead of iterating through
+them a second time, to make Phase 5 easier.)
 
 Once you're done, redirect to `/recipe/ID` as usual.
 
 If you'd like, you can have several lists for different types of
-objects, and then use `bulk_update` instead of `save`. This isn't
-required or graded, however.
+objects, and then use `bulk_update` instead of `save`. That's slightly
+faster, but it isn't required or graded.
 
 
 
 Phase 4: Handling Errors
 ------------------------
 
-Unfortunately, users are liable to—accidentally or on purpose—input
-invalid data into our edit form. We should stop them from doing that,
-and moreover, avoid accidental or malicious edits of unintended data.
-To do that, we need to validate the input data and show errors to the
-user if the data is invalid.
+In this phase, you'll validate user submissions, handle invalid data,
+and show errors.
 
-Handling errors properly can be very laborious. It is important for a
-good user experience, but isn't ideal for a homework assignment since
-those have to be limited in scope. Therefore we are only going to do a
-partial job: we will have a simple list of errors (instead of trying
-to associate errors with the specific input fields that they refer to)
-and we will not attempt to save invalid input values across
-submissions.
-
-A real-world form implementation would implement these additional
-features, but also, in the real world you'd probably use some kind of
-`Form` abstraction (Django provides one, for example) that handles
-some of these details for you. For a homework assignment, we'll
-implement something more limited that covers the core principles
-without either having to cover framework-specific APIs or doing some
-very tedious data plumbing.
-
-We are also not grading you on your error messages, as long as you
-make some effort to make them sensible. Don't make all the error
-messages some fixed string, and try to write reasonable messages, but
-we aren't going to nitpick your choice of language.
+> [!NOTE]
+> Handling errors properly is important but laborious. That's not
+> ideal for a homework assignment which has to be limited in scope.
+> We'll thus take a few shortcuts, described below in the [How You
+> Will Use This](#how-you-will-use-this) section. A proper production
+> implementation wouldn't take those shortcuts, but it might well use
+> a `Form` abstraction (Django provides one, for example) that handles
+> these details.
 
 Add an `errors` list in your `edit_recipe` controller. As you process
 a form submission (that is, a `POST` request), if you see an erroneous
@@ -187,34 +177,30 @@ the following errors:
   must be non-negative integers but are allowed to be zero. Ingredient
   amounts may be fractional but must be positive. Serving counts must
   be positive integers.
-- All of the text fields (except the description) cannot be blank;
-  make sure to check that. They also have a maximum length; check that
-  as well.
-- You likely have a specific pattern of field names you use for step
-  and ingredient data. If you see a field with this pattern but with
-  an invalid `Step` or `Ingredient` ID, or an ID for a step or
-  ingredient that isn't associated with the current recipe, that is
-  also an error.
+- If any required text field is blank, or if it is too long.
+
+You can refer to your `models.py` (or, if you didn't get a good grade
+on it, to [HW3 Phase 2](hw2.md)) to determine which fields are
+required and what their maximum lengths are. Make your error messages
+sensible and unique for each error type.
 
 If you see any errors while processing the form submission, *do not*
 save any model objects and *do not* redirect. Instead, re-render the 
 edit page.
 
-When checking errors, update the fields of the `Recipe` object *even
-if* the data is invalid. For example, if the user submits a serving
-count of `0`, or even a serving count of `asdf`, update the `Recipe`'s
-`serves` field anyway. *Do not* save the object, but *do* pass the
-modified object to the `render` function when you re-render the
-`edit.html` page. This way, the user will see their invalid data when
-the page re-loads with error messages. This won't always be possible
-(like if the request contains invalid `Step` or `Ingredient` IDs), but
-it does help users fix errors by making sure they don't have to start
-from scratch.
-
 Modify the `edit.html` template to output a list of all errors. This
 list should go after the page header and metadata like the author name
 or list of tags, but before the photo and recipe description. Put the
 list inside an `<output>` element and use CSS to make this list red.
+
+When checking for errors, update the fields of the `Recipe` object
+*even if* the data is invalid. For example, if the user submits a
+serving count of `0`, or even a serving count of `asdf`, update the
+`Recipe`'s `serves` field anyway. *Do not* save the object, but *do*
+pass the modified object to the `render` function when you re-render
+the `edit.html` page. The user's invalid input will then be preserved
+when the page re-loads with error messages. This preserves the user's
+data and helps them fix errors.
 
 
 
@@ -224,8 +210,12 @@ Phase 5: Adding steps and ingredients
 So far, our edit page allows us to edit existing `Step`s and
 `Ingredient`s, but not to add new ones. Add an extra, blank step to
 the end of the list of steps. For each bulleted list of ingredients
-below each step, including for the extra step, also add a set of
-blank entries for one extra ingredient.
+below each step, including for the extra step, also add a set of blank
+entries for one extra ingredient. The edit page should now look like
+this:
+
+<img src="hw4/edit-p5.png" alt="A screenshot of the edit page after Phase 5" />
+
 
 Since they don't have a step or ingredient ID, you'll want to give
 them special names. Make sure the extra ingredients for each step have
@@ -241,27 +231,26 @@ that involves some duplication.
 Start with handling an extra `Step`. Check if the extra step has a
 non-empty description. If it does, construct a new `Step` object. Make
 sure to set its `recipe` and `order` fields appropriately (the new
-step should come last). Don't call `Step.create`; you don't want to
-create the step until you've made sure the whole form has no errors.
-Instead, just add the created `Step` object to your list of updated
-objects. If the form is valid, it'll get saved along with everything
-else.
+step should come last, you can assume the `order` fields are numbers
+from 1 to N). Don't call `Step.create`; you don't want to save the new
+step until you've made sure the whole form has no errors. Instead,
+just add the created `Step` object to your list of updated objects. If
+the form is valid, it'll get saved along with everything else.
 
-Next, handle the extra `Ingredient` objects. These are tricky, because
-there are multiple fields for each ingredient. We recommend iterating
-over all of the `Step`s, and checking for all three fields for its
-extra `Ingredient`. If any of those fields is non-empty, create a new
-`Ingredient` object, and then validate all three fields and update the
-`Ingredient` object. Make sure to handle some tricky cases, including:
+Next, handle the extra `Ingredient` objects. Note that there are
+multiple fields for each ingredient. If any of those fields is
+non-empty, construct a new `Ingredient` object (but don't save it).
+Make sure to handle some tricky cases, including:
 
 - An extra `Ingredient` has non-empty but invalid fields.
-- An extra `Ingredient` has some blank and some filled-in fields.
+- An extra `Ingredient` has some blank and some non-empty fields.
 - The extra `Ingredient` for the extra `Step` has some filled-in
-  fields, but the extra `Step` description is invalid.
+  fields, but the extra `Step` description is empty or invalid.
   
-If you see any errors when handling extra fields, make sure to show an
-error message like normal. However, it's really tricky to save the
-invalid data, so it's OK if you don't.
+If you see any errors when handling extra fields, show error message
+like normal and do not save any newly-created objects to the database.
+If there are errors, you *don't* have to preserve the user's invalid
+inputs for the "extra" objects; that's possible but tricky.
 
 
 
@@ -336,10 +325,9 @@ How you will use this
 Naturally, any web application has to handle form submissions to
 collect or modify data from users. Forms can get
 complicated—especially when, like here, multiple database objects are
-involved. But a big part of the value of complex applications is
-precisely because they collect, cross-reference, and integrate
-information from multiple data sources, so handling this kind of
-complexity is often the value the application provides to users.
+involved. Adding objects is one complexity—which we did handle in
+Phase 5—but a full application would also have to support deleting
+objects, reordering them, and so on.
 
 Handling invalid data, especially, is a big part of the polish that
 makes applications easy to use, and is always labor-intensive. In this
