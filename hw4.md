@@ -1,7 +1,7 @@
 CS 3550 Assignment 4 (Forms and Controllers)
 ============================================
 
-**Status**: Phase 1 final \
+**Status**: Final \
 **Due**: Phase 1 due **17 Oct**, Phase 2--5 due **24 Oct**
 
 About
