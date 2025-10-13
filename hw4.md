@@ -108,7 +108,7 @@ padding between steps.
 
 The edit page should now look like this:
 
-<img src="hw4/edit-p2.png" alt="A screenshot of the edit page after Phase 2" />
+<img src="hw4/edit-p2.png" alt="A screenshot of the edit page after Phase 2" height=400 />
 
 Note that, as you edit these fields, some parts of the page which
 depend on those fields—like the total time or the ingredients
@@ -214,7 +214,7 @@ below each step, including for the extra step, also add a set of blank
 entries for one extra ingredient. The edit page should now look like
 this:
 
-<img src="hw4/edit-p5.png" alt="A screenshot of the edit page after Phase 5" />
+<img src="hw4/edit-p5.png" alt="A screenshot of the edit page after Phase 5" height=400 />
 
 
 Since they don't have a step or ingredient ID, you'll want to give
