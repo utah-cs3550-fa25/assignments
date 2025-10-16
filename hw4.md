@@ -14,7 +14,7 @@ In this assignment you'll extend the recipe application you wrote in
 - Handle form submissions and update the database in response
 - Produce human-readable error messages for invalid form submissions
 
-The assignment is due Friday, 18 Oct before midnight. The course's
+The assignment is due Friday, 24 Oct before midnight. The course's
 normal extension policy applies. Hand in your finished assignment by
 pushing it to your repository on Github.
 
