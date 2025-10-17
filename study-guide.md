@@ -159,97 +159,79 @@ line may be changed before fall break.
 
 ----------------------------------------------------------------------
 
-Forms
------
-
 **Forms** You should know how to make a form using the `<form>`,
 `<label>`, `<input>`, `<button>`, and `<output>` elements. You should
-know what the `action`, `method`, and `enctype` parameters do, and
-choose between `get` and `post`. (You are not expected to know what
-values to put for `enctype`, but you are expected to know in what case
-you need to set a non-default `enctype`.) You should know the `type`,
-`id`, `name`, `value`, and `disabled` attributes on input elements.
+know the `action` and `method`, and when you're required to add
+`enctype` or `{% csrf_token %}`. You should be able to choose between
+`get` and `post`. You should know the `type`, `id`, `name`, `value`,
+and `disabled` attributes on input elements.
 
-You should know the `checkbox`, `radio`, `file`, `image`, `date`,
-`time`, `text`, `number`, `email`, and `tel` types of `<input>`.
+You should know the `checkbox` & `radio`, `file` & `image`, `date` &
+`time`, `text`, and `number` types of `<input>` elements. You should
+know the `<textarea>` and `<select>` / `<option>` elements.
 
-You should be able to write a Django view function (controller) that
-receives form data and saves it to the database. You should know how
-to use the `request.GET`, `request.POST`, and `request.FILES`
-dictionaries to access form data. You should be able to describe the
-risks associated with file uploads.
+You should be able to write a Django controller that processes form
+data. You should know the `request.method`, `request.GET`,
+`request.POST`, and `request.FILES` attributes.
 
 **Validation**: You should know how to catch `DoesNotExist` and
-`ValueError`s. You should be able to write a form handler that
-re-renders on failure and redirects on success, and where the
-re-rendering uses shows errors saved in some data structure.
+`ValueError`s. You should be able to write a form handler redirects on
+success, and that re-renders the form with errors and user data on
+success.
 
 You should be able to explain the difference between client-side and
-server-side validation, and explain the security concerns with each.
-You should be able to use the `required`, `min`/`max`,
-`minlength`/`maxlength`, and `accept` attributes for client-side
-validation, and style invalid elements with `:valid`/`:invalid`.
+server-side validation. You should be able to use the `required`,
+`min`/`max`, `minlength`/`maxlength`, and `accept` attributes
+and the `:valid`/`:invalid` selectors.
 
 Security
 --------
 
-You should be able to describe simple security policies in terms
-of which users can perform which actions. You should be able to
-explain cookies, identity, and session data. You should be able to
-describe, at a high level, how user logins work via sessions and
-cookie. You should be able to define authorization and authentication. 
+**Identity**: You should be able to describe, at a high level, how
+sessions are created, what role cookies play, and how user logins are
+implemented. You should be able to define authorization and
+authentication.
 
 You should be able to use `request.user`, `authenticate`, `login`, and
-`logout` for logging users in and out. You should be able to test if a
-Django `User` is a member of a `Group` and raise `PermissionDenied` if
-an authorization check fails. You should be able to explain the benefits
-of centralized access control checks.
+`logout` to handle user identity. You should be able to write simple
+`Group`-based and identity-based access control checks. You should be
+able to explain the benefits of centralized access control checks.
 
-You should be able to explain what an injection vulnerability is, and
-what the benefits and risks are of using `|safe` or `.raw()` in
-Django. You should be able to explain what CSRF is, what `{%
-csrf_token %}` outputs, and what the risks are of using
-`@csrf_exempt`. You should be able to explain what an open redirect
-is, and what to look for in your code to find it. You should be able
-to explain what a CVE is and who/what OWASP is.
+**Vulnerabilities**: You should be able to explain injection
+vulnerabilities, CSRF, and open redirects. You should be able to
+describe the risks and use cases of `|safe`, `.raw()`, `@csrf_exempt`,
+and raw `redirect`. You should be able to explain what a CVE is and
+who/what OWASP is. You should be able to explain what "carding" and
+"fencing" refer to, and why you want to protect yourself from them.
+You should be able to explain "safe harbor" in the Communications
+Decency Act.
 
 JavaScript
 ----------
 
-You should be able to include JavaScript into an HTML page. You should
-know the syntax of a `<script>` tag, how to write inline JS, and what
-the `defer` parameter does. You should also know what `type=module`
-does, at least at a high level (allows `import`, separate namespace).
-You should be able to explain the idea of progressive enhancement.
+**Events**: You should be able to include JavaScript into an HTML
+page, including the `<script>` tag and its `defer` and `type`
+attributes. You should be able to explain the trade-off between
+front-end and back-end logic.
 
-You should be comfortable with basic JavaScript syntax. You should
-also know what to avoid: type mixing, accidental globals, `var`
-declarations, `for` loops with undeclared or `var`-declared variables,
-`for`/`in` loops, `function` inline functions, and the `this`
-variable. You should know `Arrays.from` and the difference between
-arrays and array-like objects.
+You should be able to explain event handling, and to attach event
+handlers using the `addEventListener` method. You should be able to
+use the `preventDefault` method on events.
 
-You should be able to use jQuery's `$` for wrapping, selecting, and
-creating elements. You should have an idea what APIs require unwrapped
-elements (like `e.target`) and which expect jQuery APIs and how to
-wrap (`$`) and unwrap (`Array.from`). You should be able to use the
-following jQuery APIs for manipulating elements:
+**DOM:** You should be comfortable with basic JavaScript syntax. You
+should be able to explain the idea of progressive enhancement. You
+should know the `createElement` and `appendChild` methods; the
+`classList` field; the `querySelectorAll` method; and the
+`textContent` field.
 
-- `append`, `prepend`, `before`, `after`, `remove`, `replace`
-- `addClass`, `removeClass`, `val`, `attr`
-- `children`, `parent`, `find`, `next`, `previous`
-- `text`
-- `data`
+**Fetch**: You should be able to use the `fetch` function, including
+at least the `method` and `body` fields in the options object. You
+should be able to wait on AJAX requests with `await`, test success
+with the `ok` field, and catch exceptions with `try`/`catch`.
 
-You should be able to attach event handlers with jQuery's `on` method
-and know the `target` field and `preventDefault` method on events.
-
-You should know about the `$.ajax` function, including at least the
-`method` and `data` fields in the options object. You should be able
-to make asynchronous requests using the `success` callback. You should
-be able to handle errors using the `error` callback. You should be
-able to use `$.ajax` as a promise with `await`. You should be know how
-to move `await` calls later in the code to enable more parallelism.
+You should be able to explain how `await` is related to callbacks. You
+should be able to draw the request chain for a given piece of code,
+and to rewrite code to make parallel `fetch` requests.
 
 Cloud Deployments
 -----------------
@@ -267,20 +249,15 @@ address ($30-50), an IPv6 address ($0), inbound bandwidth ($0),
 outbound traffic ($50-100/TB), and an HTTPS certificate ($0). You
 should be able to explain why you need an IPv4 address.
 
-You should be able to explain the roles of AWS and its EC2 and Elastic
-IP services. You should be give the cost, within an order of
-magnitude, of the deployment you were asked to create as part of
-Assignment 7 (about $9/mo). You should be able to explain the terms
-"instance" and "instance type". You should be able to explain what
-burstable CPUs are in AWS.
+You should be able to explain the terms "instance" and "instance
+type". You should be able to define RPS and give RPS and cost
+estimates for smaller (say, `t3.medium`) and larger instances (say,
+`c5.large`). You should be able to explain AMIs. You should be able to
+explain what burstable CPUs are in AWS.
 
-You should be able describe briefly what Linux, SystemD, APT, SSH, and
-JournalCtl do. You should be able to explain the role of the gateway
-server and the database server. You should be able to explain what the
-`DEBUG` and `ALLOWED_HOSTS` settings in Django do and why they differ
-between development and deployment.
-
-You should be able to define RPS and give RPS estimates for smaller
-(10-30 for a `t3.medium`) and larger instances (100-200 for a
-`c5.large`). You should be able to explain AMIs and auto-scaling.
+You should be able to explain the concepts of throughput, latency, and
+queue depth, and how they are related. You should be able to explain
+why a deployment needs slack capacity. You should be able to explain
+auto-scaling. You should be able to explain what CPU utilization is,
+and give a reasonable figure for what CPU utilization is "too high".
 
