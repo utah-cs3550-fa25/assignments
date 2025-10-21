@@ -97,10 +97,12 @@ the correct font (`Playwrite US Trad`).
 
 You can change the size of various input elements using the `size`
 attribute. Choose reasonable values, consulting the screenshot below.
-By default, `size` doesn't apply number inputs, but you can fix that,
-at least on Chrome-like browsers, with this CSS:
+By default, `size` doesn't apply number inputs, so you don't need to
+change their size. (If you'd like to, you can try the following CSS,
+which should work on very recent Chrome-like browsers. But you don't
+have to, it's not going to affect your grade.)
 
-    input[type=number][size] { width: calc(attr(size number) * 1ch + 2rem); }
+    input[type=number][size] { width: calc(attr(size type(<number>)) * 1ch + 2rem); }
 
 Indent the bulleted list of ingredients below each step. Add `.25rem`
 of padding between each ingredient vertically, and add `1rem` of
