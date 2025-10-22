@@ -156,12 +156,9 @@ def parse_recipe(lines, author):
                     break
                 ingr_text = ing_match.group(1).strip()
                 m = re.match(r'(?P<amount>\d*\.?\d+)\s+(?P<unit>\w+)\s+(?P<name>.*)', ingr_text)
-                if m:
-                    amount = float(m.group('amount'))
-                    unit = m.group('unit')
-                    name = m.group('name')
-                else:
-                    amount, unit, name = 0, '', ingr_text
+                amount = float(m.group('amount'))
+                unit = m.group('unit')
+                name = m.group('name')
                 Ingredient.objects.create(
                     amount=amount,
                     unit=unit,
