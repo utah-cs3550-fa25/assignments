@@ -128,11 +128,11 @@ continue to render the `edit.html` page.
 Modify `edit.html` to give `name`s to every editable field. For steps
 and ingredients, embed the step/ingredient ID into the `name`.
 
-Inside the `edit_recipe` controller, update the prep time, cook time,
-serving count, recipe description, step descriptions, and ingredients
-name/unit/amounts when a `POST` request is received. To update steps
-and ingredients, iterate through all of the current `Recipe`'s
-existing `Step`s/`Ingredient`s.
+Inside the `edit_recipe` controller, update the recipe title, prep
+time, cook time, serving count, recipe description, step descriptions,
+and ingredients name/unit/amounts when a `POST` request is received.
+To update steps and ingredients, iterate through all of the current
+`Recipe`'s existing `Step`s/`Ingredient`s.
 
 Handling errors is the next Phase, so you don't need to do that yet.
 
