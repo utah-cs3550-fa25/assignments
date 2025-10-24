@@ -102,9 +102,10 @@ various screen sizes.
 Django and MVC
 --------------
 
-You should be able to define clients, servers, the client-server
-architecture, requests, and responses, and give examples. You should
-be able to define the roles of the back-end and the front-end.
+**MVC**: You should be able to define clients, servers, the
+client-server architecture, requests, and responses, and give
+examples. You should be able to define the roles of the back-end and
+the front-end.
 
 You should be able to explain the roles of the model, view,
 controller, and router in a MVC-style web application. You should also
@@ -187,27 +188,29 @@ and the `:valid`/`:invalid` selectors.
 Security
 --------
 
-**Identity**: You should be able to describe, at a high level, how
-sessions are created, what role cookies play, and how user logins are
-implemented. You should be able to define authorization and
-authentication.
-
-You should be able to use `request.user`, `authenticate`, `login`, and
-`logout` to handle user identity. You should be able to write simple
-`Group`-based and identity-based access control checks. You should be
-able to explain the benefits of centralized access control checks.
+**Auth**: You should be able to explain what cookies and sessions are.
+You should be able to explain the user login flow. You should be able
+to define authorization and authentication. You should be able to use
+`request.user`, `authenticate`, `login`, and `logout` in Django. You
+should be able to write simple `Group`-based and identity-based access
+control checks. You should be able to explain the benefits of
+centralized access control checks.
 
 **Vulnerabilities**: You should be able to explain injection
 vulnerabilities, CSRF, and open redirects. You should be able to
 describe the risks and use cases of `|safe`, `.raw()`, `@csrf_exempt`,
-and raw `redirect`. You should be able to explain what a CVE is and
-who/what OWASP is. You should be able to explain what "carding" and
-"fencing" refer to, and why you want to protect yourself from them.
-You should be able to explain "safe harbor" in the Communications
-Decency Act.
+and `redirect`. You should be able to explain what "carding" and
+"fencing" refer to, and why you want to prevent them. You should be
+able to explain "safe harbor" in the Communications Decency Act.
 
 JavaScript
 ----------
+
+**DOM:** You should be comfortable with basic JavaScript syntax. You
+should be able to explain the idea of progressive enhancement. You
+should know the `createElement` and `appendChild` methods; the
+`classList` field; the `querySelectorAll` method; and the
+`textContent` field.
 
 **Events**: You should be able to include JavaScript into an HTML
 page, including the `<script>` tag and its `defer` and `type`
@@ -218,29 +221,23 @@ You should be able to explain event handling, and to attach event
 handlers using the `addEventListener` method. You should be able to
 use the `preventDefault` method on events.
 
-**DOM:** You should be comfortable with basic JavaScript syntax. You
-should be able to explain the idea of progressive enhancement. You
-should know the `createElement` and `appendChild` methods; the
-`classList` field; the `querySelectorAll` method; and the
-`textContent` field.
-
 **Fetch**: You should be able to use the `fetch` function, including
 at least the `method` and `body` fields in the options object. You
 should be able to wait on AJAX requests with `await`, test success
 with the `ok` field, and catch exceptions with `try`/`catch`.
 
-You should be able to explain how `await` is related to callbacks. You
-should be able to draw the request chain for a given piece of code,
-and to rewrite code to make parallel `fetch` requests.
+**Promises**: You should be able to explain how `await` is related to
+callbacks. You should be able to draw the request chain for given
+code, and to rewrite code to make parallel `fetch` requests.
 
 Cloud Deployments
 -----------------
 
-You should be able to identify the parts of a URL: the protocol (or
-scheme), hostname (or domain), port, and path (or page). You should be
-able to explain the relationship between hostnames (also called
-domains), IP addresses, and packet routes, and be able to distinguish
-between them.
+**Network**: You should be able to identify the parts of a URL: the
+protocol (or scheme), hostname (or domain), port, and path (or page).
+You should be able to explain the relationship between hostnames (also
+called domains), IP addresses, and packet routes, and be able to
+distinguish between them.
 
 You should be able to explain the role of a registrar. You should know
 what A and AAAA records do in DNS. You should be able to give the
@@ -249,15 +246,16 @@ address ($30-50), an IPv6 address ($0), inbound bandwidth ($0),
 outbound traffic ($50-100/TB), and an HTTPS certificate ($0). You
 should be able to explain why you need an IPv4 address.
 
-You should be able to explain the terms "instance" and "instance
-type". You should be able to define RPS and give RPS and cost
-estimates for smaller (say, `t3.medium`) and larger instances (say,
-`c5.large`). You should be able to explain AMIs. You should be able to
-explain what burstable CPUs are in AWS.
+**Compute**: You should be able to explain the terms "instance" and
+"instance type". You should be able to define RPS and give RPS and
+cost estimates for smaller (say, `t3.medium`) and larger instances
+(say, `c5.large`). You should be able to explain AMIs. You should be
+able to explain what burstable CPUs are in AWS.
 
-You should be able to explain the concepts of throughput, latency, and
-queue depth, and how they are related. You should be able to explain
-why a deployment needs slack capacity. You should be able to explain
-auto-scaling. You should be able to explain what CPU utilization is,
-and give a reasonable figure for what CPU utilization is "too high".
+**Scaling**: You should be able to explain the concepts of throughput,
+latency, and queue depth, and how they are related. You should be able
+to explain why a deployment needs slack capacity. You should be able
+to explain auto-scaling. You should be able to explain what CPU
+utilization is, and give a reasonable figure for what CPU utilization
+is "too high".
 
