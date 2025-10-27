@@ -24,7 +24,7 @@ As well as homework assignments:
   Due 19 Sep and 26 Sep.
 * [Homework 4 (Forms and Controllers)](hw4.md) \
   Due 17 Oct and 24 Oct.
-* Homework 5 (Users and Permissions) \
+* [Homework 5 (Users and Permissions)](hw5.md) \
   Due 31 Oct and 7 Nov.
 * Homework 6 (JavaScript) \
   Due 14 Nov and 21 Nov.
