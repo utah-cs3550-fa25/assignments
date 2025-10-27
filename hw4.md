@@ -218,7 +218,6 @@ this:
 
 <img src="hw4/edit-p5.png" alt="A screenshot of the edit page after Phase 5" height=400 />
 
-
 Since they don't have a step or ingredient ID, you'll want to give
 them special names. Make sure the extra ingredients for each step have
 different names. We recommend naming the extra ingredient fields with
