@@ -21,8 +21,8 @@ normal extension policy applies.
 Phase 1: Enabling logins
 ------------------------
 
-Open your `settings.html` file. Add the following line somewhere in
-the file:
+Open your `settings.py` file. Add the following line somewhere in the
+file:
 
     LOGIN_URL = "/login"
 
