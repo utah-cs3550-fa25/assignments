@@ -91,16 +91,17 @@ def parse_recipe(lines, author):
     step_ingredient_lines = []
     
     for line in lines[1:]:  # Skip title line
-        line = line.strip()
-        if not line:  # Whitespace only - ignore
+        if not line.strip():  # Whitespace only - ignore
             continue
         elif ':' in line and line.split(':', 1)[0].isalpha():
             key, value = line.split(":", 1)
             metadata[key.casefold()] = value.strip()
         elif line[0].isalpha():  # Description (starts with letter)
-            description += " " + line
+            description += " " + line.strip()
         elif line[0].isdigit() or line[0].isspace() or line.startswith('-') or line.startswith('–'):  # Steps/ingredients
-            step_ingredient_lines.append(line)
+            step_ingredient_lines.append(line.strip())
+        else:
+            raise Exception(line)
     
     # Create Recipe with author
     recipe = Recipe.objects.create(
