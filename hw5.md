@@ -36,7 +36,7 @@ contains the mandatory `{% csrf_token %}` tag. As usual, this form
 submits to its own URL. Also make sure that each `<input>` inside that
 form has a `name` and an appropriate `type`.
 
-Find your `login_form` controller. Modify it so that, for `POST`
+Find your `singup` controller. Modify it so that, for `POST`
 requests, it:
 
 1. Extracts the username and password from the POST request;
