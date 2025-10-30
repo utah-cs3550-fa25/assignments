@@ -55,6 +55,7 @@ def create_users():
         first_name="Dan", last_name="Doughkneeder",
     )
 
+    Profile.objects.create(user=prof)
     Profile.objects.create(user=u1)
     Profile.objects.create(user=u2)
     Profile.objects.create(user=u3)
