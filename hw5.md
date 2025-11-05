@@ -176,7 +176,7 @@ you don't show the current user's public recipes twice. Test your
 logic by logging in as a specific user (say, `a`), noting what recipes
 you see on the user's profile page (say, `/profile/a`), and then
 logging out and viewing the same page again. You should see private
-recipes when logged out but not when logged in.
+recipes when logged in but not when logged out.
 
 [dq-union]: https://docs.djangoproject.com/en/5.2/ref/models/querysets/#union
 [dq-q]: https://docs.djangoproject.com/en/5.2/ref/models/querysets/#q-objects
