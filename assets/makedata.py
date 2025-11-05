@@ -201,8 +201,8 @@ def parse_file(blocks, authors):
                 if recipe.author != prev.author:
                     recipe.copied_from = prev
                     recipe.save()
-                    #prev.is_public = True
-                    #prev.save()
+                    prev.is_public = True
+                    prev.save()
                 break
 
     # Feature only the three specific recipes
@@ -220,7 +220,7 @@ def parse_file(blocks, authors):
         feat_date = base + datetime.timedelta(days=days)
         feat_dt = datetime.datetime.combine(feat_date, datetime.time(hour=hour, minute=0))
         r.featured_on = timezone.make_aware(feat_dt)
-        #r.is_public = True
+        r.is_public = True
         r.save()
 
     return parsed
