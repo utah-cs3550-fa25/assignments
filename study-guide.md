@@ -206,29 +206,37 @@ able to explain "safe harbor" in the Communications Decency Act.
 JavaScript
 ----------
 
-**DOM:** You should be comfortable with basic JavaScript syntax. You
-should be able to explain the idea of progressive enhancement. You
-should know the `createElement` and `appendChild` methods; the
-`classList` field; the `querySelectorAll` method; and the
-`textContent` field.
+**DOM:** You should be comfortable with basic JavaScript syntax and be
+able to include JavaScript on a web page. You should be able to
+explain the idea of progressive enhancement.
 
-**Events**: You should be able to include JavaScript into an HTML
-page, including the `<script>` tag and its `defer` and `type`
-attributes. You should be able to explain the trade-off between
-front-end and back-end logic.
+You should know the `addEventListener` method, the `click`, `input`,
+`submit`, and `mouseover` events, and the `preventDefault` method on
+event objects.
 
-You should be able to explain event handling, and to attach event
-handlers using the `addEventListener` method. You should be able to
-use the `preventDefault` method on events.
+You should know the following DOM APIs:
+
+- `querySelector`/`querySelectorAll`, including on elements
+- `closest`, for querying ancestors
+- `createElement`
+- `append`, `prepend`, `before`, and `after`
+- `remove` and `replaceWith`
+
+You should also be able to modify the fields of elements. This
+includes understanding:
+
+- Reflected attributes like `id`, `value`, and `checked`
+- `classList` (including `add`, `remove`, and `toggle`)
+- `dataset`
 
 **Fetch**: You should be able to use the `fetch` function, including
-at least the `method` and `body` fields in the options object. You
-should be able to wait on AJAX requests with `await`, test success
-with the `ok` field, and catch exceptions with `try`/`catch`.
+setting the `method` and `body`. You should be able to use `then` and
+`catch` with `fetch`, and check the `ok` field. You should know which
+error types are handled in `catch` and which ones are handled with `ok`.
 
-**Promises**: You should be able to explain how `await` is related to
-callbacks. You should be able to draw the request chain for given
-code, and to rewrite code to make parallel `fetch` requests.
+You should be able to explain how `await` is related to callbacks. You
+should be able to draw the request chain for given code, and to
+rewrite code to make parallel `fetch` requests.
 
 Cloud Deployments
 -----------------
