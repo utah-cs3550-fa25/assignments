@@ -168,15 +168,14 @@ the instructions in [Assignment 3](hw3.md); the `makedata.py` script
 should automatically detect the `is_public` field and use it, making
 some recipes public and some private for each user.
 
-Modify the `index`, `profile`, and `search` controllers; in each one,
-modify the query to exclude non-public recipes, but to _include_ the
-current user's non-public recipes. There are a few ways to do this
-using the [`union` method][dq-union] or [`Q` objects][dq-q]. Make sure
-you don't show the current user's public recipes twice. Test your
-logic by logging in as a specific user (say, `a`), noting what recipes
-you see on the user's profile page (say, `/profile/a`), and then
-logging out and viewing the same page again. You should see private
-recipes when logged in but not when logged out.
+Modify the `profile` and `search` controllers to exclude non-public
+recipes, but to _include_ the current user's non-public recipes. There
+are a few ways to do this using the [`union` method][dq-union] or [`Q`
+objects][dq-q]. Make sure you don't show the current user's public
+recipes twice. Test your logic by logging in as a specific user (say,
+`a`), noting what recipes you see on the user's profile page (say,
+`/profile/a`), and then logging out and viewing the same page again.
+You should see private recipes when logged in but not when logged out.
 
 [dq-union]: https://docs.djangoproject.com/en/5.2/ref/models/querysets/#union
 [dq-q]: https://docs.djangoproject.com/en/5.2/ref/models/querysets/#q-objects
