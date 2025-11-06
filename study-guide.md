@@ -217,7 +217,6 @@ event objects.
 You should know the following DOM APIs:
 
 - `querySelector`/`querySelectorAll`, including on elements
-- `closest`, for querying ancestors
 - `createElement`
 - `append`, `prepend`, `before`, and `after`
 - `remove` and `replaceWith`
@@ -227,7 +226,6 @@ includes understanding:
 
 - Reflected attributes like `id`, `value`, and `checked`
 - `classList` (including `add`, `remove`, and `toggle`)
-- `dataset`
 
 **Fetch**: You should be able to use the `fetch` function, including
 setting the `method` and `body`. You should be able to use `then` and
