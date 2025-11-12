@@ -409,9 +409,9 @@ rebooted, which is convenient if you need to pause your work.
 
 Next, install Django:
 
-    python3 -m pip install --break-system-packages django
+    python3 -m pip install --break-system-packages django pillow
     
-The scary `--break-system-packages` flag installs the `django` package
+The scary `--break-system-packages` flag installs these package
 system-wide. If you were deploying several Django services on one
 machine, you wouldn't want to do this (you'd use [virtual
 environments][venv]) but for our simple deployment installing
@@ -481,10 +481,11 @@ Restart NGINX by running:
     sudo systemctl restart nginx
 
 Visit your web server again, by going to http://XX.XX.XX.XX/ as
-before. You should now see a "502 Bad Gateway" or "504 Gateway
-Timeout" error page. This is good! It means that NGINX is attempting
-to contact your Django server (which isn't running yet). You can now
-move on to the next phase, where we get Django running.
+before. Again, make sure you are using `http`, not `https`. You should
+now see a "502 Bad Gateway" or "504 Gateway Timeout" error page. This
+is good! It means that NGINX is attempting to contact your Django
+server (which isn't running yet). You can now move on to the next
+phase, where we get Django running.
 
 However, if you continue to see NGINX's default web page, or you don't
 see a web page at all, something has gone wrong. Make sure you've
@@ -722,6 +723,10 @@ and profile photos. Make sure you can edit recipes and upload new
 photos. If not, double-check that you made all the necessary edits to
 `settings.py`, stop the server with `kill`, and rerun the `runserver`
 command.
+
+Note that images will load slowly and won't be cached (so they'll be
+downloaded again and again each time). That's ok---fixing that is out
+of scope for this assignment. But they should eventually appear.
 
 
 Write a cover sheet
