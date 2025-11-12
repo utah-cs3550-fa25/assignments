@@ -28,7 +28,7 @@ As well as homework assignments:
   Due 31 Oct and 7 Nov.
 * [Homework 6 (JavaScript)](hw6.md) \
   Due 14 Nov and 21 Nov.
-* Homework 7 (AWS) \
+* [Homework 7 (AWS)](hw7.md) \
   Due 28 Nov and 5 Dec.
 
 Unlinked assignments might be present in this repository but are still
