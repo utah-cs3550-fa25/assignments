@@ -552,16 +552,18 @@ to set up NGINX to serve your static files. To do so, it needs
 permissions to list your home directory and to read all of the files.
 You can grant it these permissions with these two commands:
 
+    chmod o+x ~
     chmod o+rx cs3550/static
     chmod o+r cs3550/static/*
 
 The first line says all *o*ther users on the system (including NGINX)
-should have *r*ead and e*x*ecute permissions on the home directory,
-project directory, and static directory; in Linux, the execute
-permission is needed to list the files inside a directory.
-
-The second line says all *o*ther users should have *r*ead permissions
-on all of the files in `static`.
+should have e*x*ecute permissions on the home directory; the second
+line says all other users should have *r*ead and e*x*ecute permissions
+on the static directory; and the third line says that all other users
+should have read permissions on all of the static files. These
+permissions are necessary for NGINX to be able to serve our static
+files; in Linux, the execute permission is needed to list the files
+inside a directory.
 
 Now visit http://ip.ip.ip.ip/static/main.css or another static file.
 You should see the file show up. If not, check that your NGINX
