@@ -281,7 +281,7 @@ Click the "Associate" button at the bottom of the page.
 In the left-hand sidebar, select "Instances" to get back to page with
 the familiar table of instances. Select your one instance by checking
 its box. In the bottom-right half of the screen, check that there's
-now a value under "Elastic IP", like this:
+now a value under "Elastic IP address", like `98.94.165.5` here:
 
 ![](hw7/aws7.png)
 
