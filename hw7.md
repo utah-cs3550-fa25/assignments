@@ -551,7 +551,7 @@ to set up NGINX to serve your static files. To do so, it needs
 permissions to list your home directory and to read all of the files.
 You can grant it these permissions with these two commands:
 
-    chmod o+rx ~ cs3550 cs3550/static
+    chmod o+rx cs3550/static
     chmod o+r cs3550/static/*
 
 The first line says all *o*ther users on the system (including NGINX)
