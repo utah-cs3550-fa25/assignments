@@ -231,10 +231,7 @@ includes understanding:
 setting the `method` and `body`. You should be able to use `then` and
 `catch` with `fetch`, and check the `ok` field. You should know which
 error types are handled in `catch` and which ones are handled with `ok`.
-
-You should be able to explain how `await` is related to callbacks. You
-should be able to draw the request chain for given code, and to
-rewrite code to make parallel `fetch` requests.
+You should be able to explain how `await` is related to callbacks.
 
 Cloud Deployments
 -----------------
@@ -254,8 +251,8 @@ should be able to explain why you need an IPv4 address.
 
 **Compute**: You should be able to explain the terms "instance" and
 "instance type". You should be able to define RPS and give RPS and
-cost estimates for smaller (say, `t3.medium`) and larger instances
-(say, `c5.large`). You should be able to explain AMIs. You should be
+cost estimates for smaller (say, `t3.micro`) and larger instances
+(say, `c5.xlarge`). You should be able to explain AMIs. You should be
 able to explain what burstable CPUs are in AWS.
 
 **Scaling**: You should be able to explain the concepts of throughput,
