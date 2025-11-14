@@ -289,8 +289,8 @@ I discussed this assignment with:
 - ...
 - ...
 
-[ ] I solemnly swear that I wrote every line of code submitted as part
-of this assignment.
+- [ ] I solemnly swear that I wrote every line of code submitted as part
+  of this assignment.
 
 The most interesting thing I learned in this assignment was ...
 

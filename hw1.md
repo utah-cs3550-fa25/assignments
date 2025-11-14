@@ -434,9 +434,9 @@ I discussed this assignment with:
 - ...
 - ...
 
-[ ] I solemnly swear that I wrote every line of code submitted as part
-of this assignment (except Django's auto-generated code and the
-assignment starter HTML).
+- [ ] I solemnly swear that I wrote every line of code submitted as part
+  of this assignment (except Django's auto-generated code and the
+  assignment starter HTML).
 
 The most interesting thing I learned in this assignment was ...
 
