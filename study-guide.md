@@ -255,10 +255,10 @@ cost estimates for smaller (say, `t3.micro`) and larger instances
 (say, `c5.xlarge`). You should be able to explain AMIs. You should be
 able to explain what burstable CPUs are in AWS.
 
-**Scaling**: You should be able to explain the concepts of throughput,
-latency, and queue depth, and how they are related. You should be able
-to explain why a deployment needs slack capacity. You should be able
-to explain auto-scaling. You should be able to explain what CPU
-utilization is, and give a reasonable figure for what CPU utilization
-is "too high".
+**Scaling**: You should be able to compute capacity utilization. You
+should be able to explain queuing delay, the amplification factor, and
+give its general characteristics (low for low utilization, goes to
+infinity as utilization approaches 100%). You should be able to give
+reasonable values for what utilization factor indicates you should
+scale. You should be able to explain congestion collapse at a high level.
 
