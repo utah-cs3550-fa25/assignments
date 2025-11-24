@@ -1,7 +1,7 @@
 CS 3550 Assignment 6 (JavaScript)
 ==================================
 
-**Status**: Draft \
+**Status**: Final \
 **Due**: Phase 1 due **14 Nov**, Phase 2--5 due **21 Nov**
 
 About
@@ -76,8 +76,8 @@ feature on this page, we will *only write JavaScript in `main.js`*. Do
 not create other JavaScript files or write inline JavaScript in
 individual templates.
 
-Once you've found selected the checkbox element in JavaScript, attach
-an event handler to its `input` event. The `input` event is a more
+Once you've selected the checkbox element in JavaScript, attach an
+event handler to its `input` event. The `input` event is a more
 convenient than `click` for two reasons. First, `input` occurs *after*
 an input element changes its value, so by the time the event handler
 runs, the checkbox's checked or unchecked state is already updated and

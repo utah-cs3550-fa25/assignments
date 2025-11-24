@@ -452,6 +452,7 @@ Edit the file until it contains the following text *and nothing else*:
         
         location / {
             proxy_pass http://localhost:8000/;
+            proxy_request_buffering off;
         }
     
         location /static/ {
