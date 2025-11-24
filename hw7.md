@@ -711,14 +711,14 @@ HTTPS.
 
 # Finishing up
 
-Make sure that the stylesheet, favicon, images, and links all work
-correctly. If one of them doesn't, check that you haven't hard-coded
+Make sure that the stylesheet, images, and links all work correctly.
+If one of them doesn't, check that you haven't hard-coded
 `localhost:8000` into any of your HTML files. All links in your
 application should be to host-relative URLs which start with a forward
 slash (`/`). If you find any broken URLs, fix them in your local copy
 of the code. Then upload that file (but not all the files, so as not
-to overwrite `settings.py`), stop the server with `kill`, and rerun the
-`runserver` command.
+to overwrite `settings.py`), stop the server with `kill`, and rerun
+the `runserver` command.
 
 Make sure you can log in and out. Make sure you can see recipe photos
 and profile photos. Make sure you can edit recipes and upload new
@@ -847,7 +847,7 @@ different weights:
 **Phase 4** is worth 15 points. It is graded on:
 
 - Your instance must run your web application
-- All stylesheets, favicons, images, and links should work.
+- All stylesheets, images, and links should work.
 - Login/logout should work.
 - Recipe editing and recipe photos (including upload) should work)
 
