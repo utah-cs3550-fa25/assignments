@@ -205,6 +205,11 @@ Your browser will download a file. **Do not lose this file.**
 In the "Network settings" section, click the checkboxes to allow HTTP
 and HTTPS access. Leave the SSH checkbox checked.
 
+> [!WARNING]
+> If you forget to check the boxes correctly, you'll probably need to
+> restart from scratch. Make sure all three boxes---SSH, HTTP, and
+> HTTPS---are all checked.
+
 Then, in the "Network settings" section, click the edit button in the
 top-right corner. Check whether the "VPC" box is empty. If it is,
 click the "reload" button next to it and then select "Create default
