@@ -713,7 +713,11 @@ succeeded. Run the following:
     sudo systemctl restart nginx
 
 Check that you can now visit `https://mydomain.whatever/`, now using
-HTTPS.
+HTTPS. Ordinary HTTP connections should also work, which you can test
+by going to `http://mydomain.whatever/`, but they will now redirect to
+the HTTPS version. Direct connections to the IP address *won't* work
+any more; this is a security measure enforced by `certbot`. That's OK;
+we'll grade your site by accessing the domain directly over HTTPS.
 
 # Finishing up
 
