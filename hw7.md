@@ -458,6 +458,7 @@ Edit the file until it contains the following text *and nothing else*:
         location / {
             proxy_pass http://localhost:8000/;
             proxy_request_buffering off;
+            client_max_body_size 0;
         }
     
         location /static/ {
@@ -732,9 +733,10 @@ the `runserver` command.
 
 Make sure you can log in and out. Make sure you can see recipe photos
 and profile photos. Make sure you can edit recipes and upload new
-photos. If not, double-check that you made all the necessary edits to
-`settings.py`, stop the server with `kill`, and rerun the `runserver`
-command.
+photos (we won't test large photos many megabytes in size; it's OK if
+those don't work). If not, double-check that you made all the
+necessary edits to `settings.py`, stop the server with `kill`, and
+rerun the `runserver` command.
 
 Note that images will load slowly and won't be cached (so they'll be
 downloaded again and again each time). That's ok---fixing that is out
